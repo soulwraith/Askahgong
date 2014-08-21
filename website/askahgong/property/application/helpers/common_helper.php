@@ -1005,5 +1005,90 @@
 
 	}
 	
+	function watermark_item_photos($itemid,$user){
+		$filearr=array();
+		$base='photo/'.$itemid.'/';
+		
+		if(is_dir($base)){
+			$filearr=scandir($base);
+		}
+		
+		
+		foreach($filearr as $file){
+			if(!is_dir($base.$file)){
+				$img = $base.$file;
+				watermark_image($img,$user->username."\n".$user->phone,$img);
+			}
+			
+			
+		}
+	}
+	
+	
+	
+	function watermark_image($SourceFile, $WaterMarkText , $DestinationFile) {
+	   list($width, $height) = getimagesize($SourceFile);
+	   $image_p = imagecreatetruecolor($width, $height);
+	   
+	   $ext = explode(".",$SourceFile);
+	   
+	   switch (end($ext))
+		{
+		    case 'jpeg': case 'jpg':
+		        $image = imagecreatefromjpeg($SourceFile);
+		    break;
+		    case 'gif':
+		        $image = imagecreatefromgif($SourceFile);
+		    break;
+		    case 'png':
+		        $image = imagecreatefrompng($SourceFile);
+		    break;
+		    default:
+		       $image = imagecreatefromjpeg($SourceFile);
+		}
+	   
+	   imagecopyresampled($image_p, $image, 0, 0, 0, 0, $width, $height, $width, $height); 
+	   $opacity = 70;
+	   $black = imagecolorallocatealpha($image_p, 255, 255, 255, 127 * (100 - $opacity) / 100);
+	   
+	  
+	   
+	   $font = '../property/font/arialbd.ttf';
+	   $font_size = 50; 
+	   $textDim = imagettfbbox($font_size, 0, $font, $WaterMarkText);
+		$textX = $textDim[2] - $textDim[0];
+		$textY = $textDim[7] - $textDim[1];
+		$text_posX = ($width / 2) - ($textX / 2);
+		$text_posY = ($height / 2) - ($textY / 2);
+	   imagealphablending($image_p, true);
+	   imagettftext($image_p, $font_size, 0, $text_posX, $text_posY - $font_size, $black, $font, $WaterMarkText);
+	   if ($DestinationFile<>'') {
+	   	
+		 $ext = explode(".",$DestinationFile);
+	   
+		   switch (end($ext))
+			{
+			    case 'jpeg': case 'jpg':
+			        imagejpeg ($image_p, $DestinationFile, 70); 
+			    break;
+			    case 'gif':
+			        imagegif ($image_p, $DestinationFile); 
+			    break;
+			    case 'png':
+			       imagepng ($image_p, $DestinationFile, 9); 
+			    break;
+			    default:
+			      imagejpeg ($image_p, $DestinationFile, 70); 
+			}
+		
+		
+	      
+	   };
+	   imagedestroy($image); 
+	   imagedestroy($image_p); 
+	};
+	
+	
+	
 	
 ?>

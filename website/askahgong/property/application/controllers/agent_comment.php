@@ -57,7 +57,7 @@ class Agent_comment extends MY_Controller {
 			
 		});
 		
-		$this->render_page('page_dashboard',true,"");
+		$this->render_page('page_dashboard',false,"");
 		
 	}
 	

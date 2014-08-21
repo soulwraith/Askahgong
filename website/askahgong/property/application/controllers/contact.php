@@ -13,7 +13,7 @@ class Contact extends MY_Controller {
 	}
 	
 	function index(){
-	
+		
 	}
 	
 	function agents($start=0){

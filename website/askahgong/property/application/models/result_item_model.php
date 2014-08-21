@@ -69,6 +69,14 @@
 			push_task("itemsdata","json",$sql,array());
 		}
 		
+		function get_userid_by_itemid($item_id){
+			$sql ="SELECT
+					 userid
+				   from
+				   	 askahgong.transaction_record
+				   where itemid=?";
+			push_task("userid","scalar",$sql,array($item_id));	   
+		}
 		
 		function check_item_is_pending($item_id){
 			$sql="select pending from item_info where id='".$item_id."'";

@@ -21,7 +21,14 @@ class Landing extends MY_Controller {
 		
 	}
 	
-	
+	public function test(){
+		$user = new stdClass;
+		$user->phone = "60167203425";
+		$user->username="Andy";
+		watermark_item_photos(72,$user);
+		
+		//watermark_image("photo/72/abc.png","test\ngogogogogoo","photo/72/abcd.jpg");
+	}
 	
 	
 }

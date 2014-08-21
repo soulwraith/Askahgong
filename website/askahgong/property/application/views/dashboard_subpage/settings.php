@@ -194,7 +194,9 @@
 									<option value="0">Any New Item</option>
 									<option value="1">Any New Item Matching My Posting(s)</option>
 									<option value="2">Any New Item Matching My Criteria</option>
+									<?php if($isAgent):?>
 									<option value="3">Any Bad Agent Review</option>
+									<?php endif?>
 								</select>
 					    	</div>
 					    </div>

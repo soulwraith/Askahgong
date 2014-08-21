@@ -189,7 +189,20 @@ class Posting extends MY_Controller {
 	public function handle_file_api(){
 		$item_id = $this->input->post("item_id");
 		handle_file($item_id);
+		
+		$this->result_item_model->get_userid_by_itemid($item_id);
+		$this->user_model->get_user_by_userid(get_userid(),"(%task0,userid%)");
+		$this->result_item_model->check_item_is_pending($item_id);	
+		commitTasks();
+		GLOBAL $data;
+		if($data["is_pending"]!="1"){
+			watermark_item_photos($itemid,$data["user"]);
+		}
+		
 	}
+	
+
+	
 	
 	public function delete(){
 		precheck_login_before_db();	

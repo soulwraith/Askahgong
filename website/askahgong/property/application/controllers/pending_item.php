@@ -219,6 +219,7 @@ class Pending_item extends MY_Controller {
 		$this->result_item_model->update_item_ownership($customer_id,$agent_id,$item_id);
 		$this->activity_model->insert_activity(0,$agent_id,$item_id);
 		$this->result_item_model->get_item_full_data($item_id,$agent_id);
+		$this->user_model->get_user_by_userid($userid,$agent_id,"","agent");
 		
 		GLOBAL $tasksCompletedCallBack;
 		array_push($tasksCompletedCallBack,function(){
@@ -233,7 +234,7 @@ class Pending_item extends MY_Controller {
 		commitTasks();
 		
 		
-		
+		watermark_item_photos($item_id,$data["agent"]);
 		
 		
 		echo $data["item"]->url;
