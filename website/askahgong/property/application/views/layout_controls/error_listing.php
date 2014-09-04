@@ -130,6 +130,12 @@
 						<small><strong>Unknown Nouns: <?=$unknownnouns?></strong><br>
 								<?=convert_content_string_to_html($sentence)?>
 						</small>
+						<div class="original-data">
+							<a href="javascript:void(0)" onclick="$(this).parents('.original-data').find('.form-group').show()">Show original data</a>
+							<div class="form-group hidden-object">
+								<textarea onchange="update_user_text(<?=$error->id?>,this)" rows="10" class="form-control"><?=($sentence)?></textarea>
+							</div>
+						</div>
 					<?php elseif($error->smsorweb==0):?>
 						<small><strong>Unknown Nouns: <?=$unknownnouns?></strong><br>
 								User SMS: (//ignore TEXT_TO_IGNORE ignore//)

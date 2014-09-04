@@ -119,7 +119,9 @@
 					 <div class="row">
 					 	<div class="col-xs-12">
 							<div class="alert alert-warning">
-								Your agent identity is under verification process.
+								We are verifying your change to agent status. We will let you know when you can starting posting!
+								<br>
+								<a>What is agent verification?</a>
 							</div>
 						</div>
 					 </div>
@@ -127,7 +129,8 @@
 					 <div class="row">
 					 	<div class="col-xs-12">
 							<div class="alert alert-danger">
-								Your agent identity verification failed.
+								Your agent identity verification has failed.
+								
 							</div>
 						</div>
 					 </div>

@@ -9,7 +9,7 @@
 			<?php $exp_title.= ", ".$unread_points_details->reserved?>
 		<?php endif?>	
 		<?php if($unread_points_details->agent_review==1):?>
-			<?php $exp_title = "ABC"?>
+			<?php $exp_title = "changes in reviews"?>
 		<?php endif?>	
 		<span class="text3">"<?=$exp_title?>"<span>
 	</div>

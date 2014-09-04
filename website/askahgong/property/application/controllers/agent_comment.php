@@ -74,6 +74,7 @@ class Agent_comment extends MY_Controller {
 		commitTasks();
 		$data["comment_threads"] = handle_agent_replies_thread($data["comment_threads"],$data["comment_replies"]);
 		$data['pagination'] = generate_pagination('/agent_comment/get_agent_comment_threads/'.$data["agent_id"].'/'.$type.'/',5,$data['comment_threads_count'],$data['limit'],"","ajax");
+		$data["comment_type"] = $type;
 		$this->load->view("layout_controls/agent_comment_thread",$data);
 	}
 	

@@ -50,6 +50,16 @@
 	
 	
 	<?php endforeach?>
+	
+	
+	<?php if(count($agents)<=0 && isset($start) && ($start==0)):?>	
+		
+			<div class="col-xs-12 padding">
+				<small>No agent found.</small>
+			</div>
+		
+	<?php endif?>	
+	
 <?php if(!isset($data_only)):?>	
 	</div>
 	

@@ -74,7 +74,13 @@
 							<br>
 							<span class="text1"><?=$notification->item->actiontext?> <?=$notification->item->name?> @ <?=$notification->item->areanameshort?></span>
 							<br>
-							<span class="text3">Posted By <?=generate_username_control($notification->item->userid,$notification->item->username,true,$notification->item->isonline,10,true)?></span>
+							<span class="text3">
+								<?php if(!empty($notification->item->original_ownerid)):?>
+									Takenover
+								<?php else:?>
+									Posted
+								<?php endif?>
+								 By <?=generate_username_control($notification->item->userid,$notification->item->username,true,$notification->item->isonline,10,true)?></span>
 							<br>
 							<span class="text2"><?=ago($notification->dateandtime,true,true)?></span>
 							<span class="text2">
@@ -118,14 +124,19 @@
 							<?php if(!is_verified_agent($user)):?>						
 								<?php if($notification->unreadcount>1):?>
 						   			<span class="text1">and <?=concat_if_plural(" other agent","s",$notification->unreadcount-1)?></span>
-									
+									<br>
+									have requested to be your agent
+								
+								<?php else:?>
+									<br>
+									has requested to be your agent
+								
 								<?php endif?>
-								<br>
-								requested to be the agent of 
+								
 								
 							<?php else:?>
 								<br>
-								request you to be the agent of 
+								has requested you to be his/her agent
 							<?php endif?>
 							<br>
 							<span class="text1"><?=$notification->item->actiontext?> <?=$notification->item->name?> @ <?=$notification->item->areanameshort?></span>
@@ -157,9 +168,9 @@
 							<span class="text1"><?=generate_username_control($notification->userid,$notification->username,true,$notification->isonline,20,true)?></span>
 							<br>
 							<?php if(!is_verified_agent($user)):?>	
-								has agreed to be the agent of 					
+								has agreed to represent you					
 							<?php else:?>
-								has agreed to let you be the agent of 
+								has accepted you to be his/her agent
 							<?php endif?>
 							<br>
 							<span class="text1"><?=$notification->item->actiontext?> <?=$notification->item->name?> @ <?=$notification->item->areanameshort?></span>
@@ -191,7 +202,7 @@
 								<?php if($notification->resulttext2>0):?>
 									commended
 								<?php else:?>
-									critisized
+									reported
 								<?php endif?> you
 							<br>
 							<span class="text4">"<?=cutofftext($notification->resulttext,30,'...')?>"</span>

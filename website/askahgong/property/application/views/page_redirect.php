@@ -227,7 +227,7 @@ body{
    <?php 
 		$title="Verifying agent identity";
 		$img="thinking_glow";
-		$content="We are currently verifying your agent identity, please come back later after the verification process.";
+		$content="We are currently verifying your agent identity. We will inform you once you can start posting. ";
 		$link_arr=array();
 	?>
 <?php endif?>

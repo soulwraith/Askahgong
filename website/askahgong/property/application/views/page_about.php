@@ -158,7 +158,7 @@
 					</div>
 				</div>	
 				<div class="feature-button text-center">
-					<div class="feature-icon icons" style="background-position:-467px -570px;top:10px;">
+					<div class="feature-icon icons" style="background-position:-471px -572px;top:10px;">
 					</div>
 					<div class="text">
 						Notification

@@ -34,7 +34,15 @@
 		$content="<a href='javascript:void(0);' onclick='scroll_to_similar_items()'>View Similar Item Now</a>";
 	}	
 	elseif($type=="agent_review"){
-		$title='No review found for this agent. ';
+		if(!isset($comment_type) || $comment_type=="any"){
+			$title='No review for this agent yet.';
+		}
+		else if($comment_type=="good"){
+			$title='No commend found for this agent.';
+		}
+		else if($comment_type=="bad"){
+			$title='No report found for this agent.';
+		}
 		$content="<a href='javascript:void(0);'>Learn More About Review</a>";
 	}						
 ?>	

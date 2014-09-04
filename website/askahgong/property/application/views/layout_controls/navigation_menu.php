@@ -38,7 +38,7 @@
 			}
 			push_submenu($menu_list,$menu,"My Profile","profile","profile-icon");
 			if($isAgent){
-				push_submenu($menu_list,$menu,"Pending","pending_item/listing","profile-icon");
+				push_submenu($menu_list,$menu,"My Sales Lead","pending_item/listing","profile-icon");
 			}
 			push_submenu($menu_list,$menu,"My Posting","posting/view","mypostings-icon");
 			

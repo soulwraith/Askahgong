@@ -40,7 +40,7 @@
 								</div>
 							</a>
 							<a href="<?=url("about_feature","#faq_sw")?>" target="_blank">
-								<div class="features-sms featurebuttons" tip-content="You can search and post your requests conveniently via our SMS (No Internet required!) and Whatsapp service.">
+								<div class="features-sms featurebuttons" tip-content="You can search and post your requests conveniently via our SMS (No Internet required!).">
 									
 								</div>
 							</a>
@@ -144,18 +144,14 @@
 						<div class="green-arrow one diagram-elements">
 							
 						</div>
-						<div class="green-arrow two diagram-elements">
-							
-						</div>
+						
 						<div class="green-arrow three diagram-elements">
 							
 						</div>
 						<div class="web-protocol diagram-elements">
 							
 						</div>
-						<div class="whatapps-protocol diagram-elements">
-							
-						</div>
+						
 						<div class="sms-protocol diagram-elements">
 							
 						</div>
@@ -165,9 +161,7 @@
 						<div class="blue-arrow one diagram-elements">
 							
 						</div>
-						<div class="blue-arrow two diagram-elements">
-							
-						</div>
+						
 						<div class="blue-arrow three diagram-elements">
 							
 						</div>

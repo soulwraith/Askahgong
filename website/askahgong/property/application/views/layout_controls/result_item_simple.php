@@ -18,14 +18,18 @@
 					 	</strong>
 					 </div>
 					 <div class="text1">
-					 	<?=$item->pricetoshow?> / <?=$item->builtuptoshow?> 
+					 	<?=$item->pricetoshow?> / <?=$item->sizetoshow?> 
 					 </div>
 					 <div class="text2">
 					 	<?=$item->feature_comma_separated?>
 					 </div>
 					 
 					 <div class="text4">
-					 	<?=concat_if_plural("agent","s",$item->request_count)?> wanted to be this property agent.
+					 	<?php if($type=="askForAccept"):?>
+					 		<span class="red">This user wants you to represent him/her in this transaction.</span>
+					 	<?php else:?>
+					 		<?=concat_if_plural("agent","s",$item->request_count)?> propose to represent for this property.
+					 	<?php endif?>
 					 </div>
 					 
 					 <div class="row">
@@ -57,13 +61,7 @@
 				<div class="clear"></div>
 			</div>
 		</div>
-		
-		
-		
 	</div>
-	
-	
-	
 	
 	
 <?php endforeach?>

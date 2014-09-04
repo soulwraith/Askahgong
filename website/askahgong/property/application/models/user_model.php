@@ -157,7 +157,8 @@
 						getAgentCommentTotalCount(info.id,'good') as good_comment_count,
       		 			getAgentCommentTotalCount(info.id,'bad') as bad_comment_count,
 						(SELECT count(id) from askahgong.transaction_record where userid=info.id and removed=0) as totalpostings,
-						checkCanSeePhoneNumber(".$userid.",info.id) as canseephone
+						checkCanSeePhoneNumber(".$userid.",info.id) as canseephone,
+						info.verified_agent
 						".$append_col."
 					FROM 
 						askahgong.user_info info 

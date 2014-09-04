@@ -11,12 +11,25 @@
 		</div>
 	</div>
 	
+	<div class="alert alert-warning" style="margin:10px 0px;">
+		<?php if($user->id==get_userid()):?>
+			 Your reputation score shows how much you have contributed to building the Ask Ah Gong community, and making it easier for buyers or sellers to complete the transactions through your service.
+			 <br>
+			 Normally,<strong> agents with high reputation will get more requests from users without agent representative.</strong>
+			<br>
+			<a>How can I improve my reputation score?</a>
+		<?php else:?>
+			Your review will help to improve on <?=$user->username?> score, and help <?=$user->username?> to build his business. You can also let <?=$user->username?> know how he can improve on his service. 
+		<?php endif?>
+	</div>
+	
+	
 	<?php if($agent_id!=get_userid()):?>
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="comment-container">
-				<button type="button" onclick="show_comment_container('commend')" class="btn btn-primary btn-xs"><i class="fa fa-smile-o"></i> Commed This Agent</button>
-				<button type="button" onclick="show_comment_container('report')" class="btn btn-primary btn-xs"><i class="fa fa-frown-o"></i> Report This Agent</button>
+				<button type="button" onclick="show_comment_container('commend')" class="btn btn-primary btn-xs"><i class="icon-smile-o lh-17"></i> Commend This Agent</button>
+				<button type="button" onclick="show_comment_container('report')" class="btn btn-primary btn-xs"><i class="icon-frown-o lh-17"></i> Report This Agent</button>
 			</div>
 		</div>
 	</div>
@@ -123,24 +136,24 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="sub-details">
-				<span class="title">&bull; Total Posting :</span>
+				<span class="title">&bull; Total Posting(s) :</span>
 				<span class="content"><a href="posting/view/<?=$user->id?>" target="_blank"><?=$user->postcount?></a></span>
 			</div>
 			
 			<div class="sub-details">
-				<span class="title">&bull; Total Discussion Topic :</span>
+				<span class="title">&bull; Total Discussion Topic(s) :</span>
 				<span class="content"><?=$total_topic_count?></span>
 			</div>
 			
 			<div class="sub-details">
-				<span class="title">&bull; Total Discussion Reply :</span>
+				<span class="title">&bull; Total Discussion Reply(s) :</span>
 				<span class="content"><?=$total_comment_count?></span>
 			</div>
 			
 			<div class="sub-details">
-				<span class="title">&bull; Total Reviews :</span>
-				<button type="button" onclick="switch_review_page(this,'good',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$good_count?> <i class="fa fa-smile-o"></i></button>
-				<button type="button" onclick="switch_review_page(this,'bad',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$bad_count?> <i class="fa fa-frown-o"></i></button>
+				<span class="title">&bull; Total Review(s) :</span>
+				<button type="button" onclick="switch_review_page(this,'good',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$good_count?> <span class="icon-smile-o lh-18"></span></button>
+				<button type="button" onclick="switch_review_page(this,'bad',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$bad_count?> <span class="icon-frown-o lh-18"></span></button>
 			</div>
 			
 		</div>

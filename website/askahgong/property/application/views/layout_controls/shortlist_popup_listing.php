@@ -34,7 +34,13 @@
 						<br>
 						<span class="text1"><?=$item->actiontext?> <?=$item->name?> @ <?=$item->areanameshort?></span>
 						<br>
-						<span class="text3">Posted By <?=generate_username_control($item->userid,$item->username,true,$item->isonline,15,true)?></span>
+						<span class="text3">
+								<?php if(!empty($item->original_ownerid)):?>
+									Takenover
+								<?php else:?>
+									Posted
+								<?php endif?>
+								By <?=generate_username_control($item->userid,$item->username,true,$item->isonline,15,true)?></span>
 						<div>
 							<span class="text2">Shortlisted - <?=ago($item->shortlist_datetime,true,true)?></span>
 							<div class="right icons delete-button shortlisted" data-toggle="tooltip" title="Delete From Shortlist" onclick="event.preventDefault();eventStopPropagation(event);handle_shortlist(this,<?=$item->id?>,$(this).parents('.notification-item'))">

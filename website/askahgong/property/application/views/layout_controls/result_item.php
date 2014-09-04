@@ -59,7 +59,7 @@
 				<div class="manage-controls">
 					
 					<a href ="posting/edit/<?=$item->id?>" target="_blank">
-						<div class="icons edit <?php if($item->pending=="1") echo "zero-opacity"?>" data-toggle="tooltip" title="Edit This Item">
+						<div class="icons edit" data-toggle="tooltip" title="Edit This Item">
 						</div>
 					</a>	
 					
@@ -159,9 +159,16 @@
 					
 					<div class="col-xs-12 col-sm-12">
 						<div class="details overflow-ellipsis" style="padding-top:1px;">
-							<strong>&#x25cf;&nbsp;<?php if($item->type==1) echo "Req. "?>Built-up:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+							<strong>&#x25cf;&nbsp;<?php if($item->type==1) echo "Req. "?>
+								<?php if($item->builtup!="" || ($item->builtup=="" && $item->land_area=="")):?>
+								Built-up:
+								<?php else:?>
+								Land area:
+								<?php endif?>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+							</strong>
 							<span>
-								<?=$item->builtuptoshow?> 
+								<?=$item->sizetoshow?> 
 								<?php if($item->builtup!=""):?>
 								(<?=$item->psftoshow?>)
 								<?php endif?>
@@ -296,7 +303,12 @@
 						
 						<div class="tail-bar hidden-xs">
 							<div class="posttime col-sm-9 col-xs-12">
-								Posted <?=ago($item-> posttime)?> by <?=generate_username_control($item->userid,$item->username,true,$item->isonline,20)?>
+								<?php if(!empty($item->original_ownerid)):?>
+									Takenover
+								<?php else:?>
+									Posted
+								<?php endif?>
+								 <?=ago($item-> posttime)?> by <?=generate_username_control($item->userid,$item->username,true,$item->isonline,20)?>
 								
 							</div>
 							<div class="col-sm-3 col-xs-12 buttons" style="padding-right:0px;padding-bottom:5px;">

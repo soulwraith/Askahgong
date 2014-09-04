@@ -8,6 +8,7 @@ class Pending_item extends MY_Controller {
 		$this->load->model('result_item_model');
 		$this->load->model('user_model');
 		$this->load->model('activity_model');
+		$this->load->model('shortlist_model');
 	}
 
 	public function id($itemid){
@@ -26,7 +27,7 @@ class Pending_item extends MY_Controller {
 		array_push($tasksCompletedCallBack,function(){
 			GLOBAL $data;
 			
-			if($data['item']==""){
+			if($data['item']=="" || $data["item"]->removed==1){
 				$data["404"] = true;
 				return;
 			} 
@@ -134,6 +135,7 @@ class Pending_item extends MY_Controller {
 		commitTasks();
 		GLOBAL $data;
 		$data["data_only"] = true;
+		$data["start"] = $start;
 	 	echo $this->load->view("layout_controls/agent_listing",$data);
 	}
 	
@@ -220,6 +222,7 @@ class Pending_item extends MY_Controller {
 		$this->activity_model->insert_activity(0,$agent_id,$item_id);
 		$this->result_item_model->get_item_full_data($item_id,$agent_id);
 		$this->user_model->get_user_by_userid($userid,$agent_id,"","agent");
+		$this->shortlist_model->add_shortlist($userid,$item_id);
 		
 		GLOBAL $tasksCompletedCallBack;
 		array_push($tasksCompletedCallBack,function(){
@@ -238,6 +241,45 @@ class Pending_item extends MY_Controller {
 		
 		
 		echo $data["item"]->url;
+		
+		
+	}
+	
+	
+	function delete_pending_item(){
+		$itemid = $this->input->post("item_id");
+		$userid = get_userid();
+		$this->result_item_model->get_item_full_data($itemid,$userid);
+		
+		GLOBAL $tasksCompletedCallBack;
+		array_push($tasksCompletedCallBack,function(){
+			GLOBAL $data;
+			$userid = get_userid();
+			if(!isset($data["item"])){
+				echo "DELETED";
+				return;
+			}
+			$item=handle_item_data($data['item']);
+			if($item->userid!=get_userid()){
+				echo "NOT_YOUR_ITEM";
+				return;
+			}
+			else{
+				$CI =& get_instance();
+				$CI->result_item_model->delete_post($item->id,$userid);
+				$CI->result_item_model->delete_all_agent_request_by_item_id($item->id);
+				GLOBAL $tasksCompletedCallBack;
+				$tasksCompletedCallBack = array();
+				commitTasks();
+				echo "1";
+				return;
+			}
+			
+			
+		});
+		
+		commitTasks();
+		
 		
 		
 	}

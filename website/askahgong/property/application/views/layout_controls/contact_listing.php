@@ -5,12 +5,29 @@
 <div class="LAYOUT_CONTACT_LISTING">
 	
 	<?php 
+	
+		$no_result = false;
+		if(count($contacts)<=0){
+			$no_result = true;
+		}
+		
+	?>
+	
+	<?php 
 		$dummy=new stdClass();
 		$dummy->isfriend=false;
 		array_push($contacts,$dummy);
 	?>
 
 	<div class="contact-list">
+		
+		<?php if($no_result):?>
+			<div class="padding">
+				<small>No user found.</small>
+			</div>
+			
+		<?php endif?>
+		
 		<?php foreach($contacts as $contact):?>
 		
 		<?php if(!$gotfriendlist_before):?>

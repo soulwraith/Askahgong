@@ -41,14 +41,26 @@
 <?php break;?>
 
 <?php case "newItem": ?>
-	<div class="title">New Item</div>
-	<div class="content">
-		<span>
-			<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> posted a new item:<br>
-   			<a target="_blank" href="item/id/<?=$activity->targetid?>"><?php if(isset($activity->finaltext)) echo $activity->finaltext?></a>
-		</span>
-	</div>
-	<?php $icontooltip="New Item Posted"?>
+	<?php if(isset($activity->original_userid)):?>
+		<div class="title">Item Takeover</div>
+		<div class="content">
+			<span>
+				<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> takenover <?=generate_username_control($activity->original_userid,$activity->original_username)?> item:<br>
+	   			<a target="_blank" href="item/id/<?=$activity->targetid?>"><?php if(isset($activity->finaltext)) echo $activity->finaltext?></a>
+			</span>
+		</div>
+		<?php $icontooltip="Item Takeover"?>
+	<?php else:?>
+		<div class="title">New Item</div>
+		<div class="content">
+			<span>
+				<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> posted a new item:<br>
+	   			<a target="_blank" href="item/id/<?=$activity->targetid?>"><?php if(isset($activity->finaltext)) echo $activity->finaltext?></a>
+			</span>
+		</div>
+		<?php $icontooltip="New Item Posted"?>
+	<?php endif?>
+	
 <?php break;?>
 <?php case "editItem": ?>
 	<div class="title">Edit Item</div>

@@ -84,7 +84,7 @@
 					    	</div>
 					    	<div class="col-sm-6 col-xs-12" style="padding-left:3px">
 					    		<div class="form-group">
-							      <label for="size">Built-up(Sqft.)</label>
+							      <label for="size">Size(Sqft.)</label>
 							      	<a href="about/title/website#faq-builtup" target="_blank">
 				      					<div class="icons question-hover" data-toggle="tooltip" title="Click to learn about &apos;Built-up&apos;" data-placement="right">
 				      					</div>

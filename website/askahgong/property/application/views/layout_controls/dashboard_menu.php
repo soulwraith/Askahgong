@@ -21,7 +21,7 @@
 			<div class="menu-item-container <?php if($dashboard_page=="agent_comment") echo "selected"?>">
 				<div class="menu-image-container"><div class="menu-image icons profile"></div></div>
 				<div class="menu-item ">
-					Comment
+					Review
 				</div>
 			</div>
 		</a>
@@ -41,7 +41,7 @@
 			<div class="menu-item-container <?php if($dashboard_page=="pending_item") echo "selected"?>">
 				<div class="menu-image-container"><div class="menu-image icons profile"></div></div>
 				<div class="menu-item ">
-					Pending
+					Sales Lead
 				</div>
 			</div>
 		</a>
@@ -99,7 +99,7 @@
 					<?php endif?>
 					<option value="profile" <?php if($dashboard_page=="profile") echo "selected"?>>Profile</option>
 					<?php if($isAgent):?>
-					<option value="pending_item/listing" <?php if($dashboard_page=="pending_item") echo "selected"?>>Pending</option>
+					<option value="pending_item/listing" <?php if($dashboard_page=="pending_item") echo "selected"?>>Sales Lead</option>
 					<?php endif?>
 					<option value="posting/view" <?php if($dashboard_page=="posting") echo "selected"?>>Posting</option>
 					<option value="settings" <?php if($dashboard_page=="settings") echo "selected"?>>Settings</option>
@@ -124,7 +124,7 @@
 			<div class="menu-item-container <?php if($dashboard_page=="agent_comment") echo "selected"?>">
 				<div class="menu-image-container"><div class="menu-image icons profile"></div></div>
 				<div class="menu-item ">
-					Comment
+					Review
 				</div>
 			</div>
 		</a>
@@ -159,6 +159,9 @@
 		<form>
 			<div class="styled-select"> 
 				<select class="form-control dashboard-menu-select" onchange="window.location=$(this).val()">
+					<?php if($isAgent):?>
+					<option value="agent_comment/view/<?=$user->id?>" <?php if($dashboard_page=="agent_comment") echo "selected"?>>Review</option>
+					<?php endif?>
 					<option value="activity/id/<?=$user->id?>" <?php if($dashboard_page=="home") echo "selected"?>>Activity</option>
 					<option value="posting/view/<?=$user->id?>" <?php if($dashboard_page=="posting") echo "selected"?>>Posting</option>
 

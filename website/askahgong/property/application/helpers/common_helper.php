@@ -189,7 +189,7 @@
 		
 			$CI =& get_instance();
 			$item= new stdClass();;
-			
+			$item->id=null;
 			$item->type=$CI->input->post('action');
 			$item->name=$CI->input->post('itemname');
 			$pricemin=$CI->input->post('pricemin');
@@ -216,9 +216,16 @@
 			}
 			
 			
-			
+			$item->bedroom=$CI->input->post('bedroom');
+			$item->bathroom=$CI->input->post('bathroom');
 			$item->builtup=$CI->input->post('builtup');
 			$item->builtup=str_replace(",","",$item->builtup);
+			$item->land_area=$CI->input->post('land_area');
+			$item->land_area=str_replace(",","",$item->land_area);
+			$item->land_area_width=$CI->input->post('land_area_width');
+			$item->land_area_width=str_replace(",","",$item->land_area_width);
+			$item->land_area_height=$CI->input->post('land_area_height');
+			$item->land_area_height=str_replace(",","",$item->land_area_height);
 			$item->feature=$CI->input->post('feature');
 			$item->areaname=$CI->input->post('area');
 			$item->areaidlevelstring=$CI->input->post('areaidlvl');
@@ -329,6 +336,44 @@
 			$post .= " builtup(%1) " . $size;
 			$post .= "(%3)";
 			
+			if($CI->input->post('land_area')) $land_area=$CI->input->post('land_area');
+			else if (isset($_GET['land_area'])) $land_area=$_GET['land_area'];
+			else if(isset($item)) $land_area=$item->land_area;
+			else $land_area="";
+			$post .= " land_area(%1) " . $land_area;
+			$post .= "(%3)";
+			
+			if($CI->input->post('land_area_width')) $land_area_width=$CI->input->post('land_area_width');
+			else if (isset($_GET['land_area_width'])) $land_area_width=$_GET['land_area_width'];
+			else if(isset($item)) $land_area_width=$item->land_area_width;
+			else $land_area_width="";
+			
+			if($CI->input->post('land_area_height')) $land_area_height=$CI->input->post('land_area_height');
+			else if (isset($_GET['land_area_height'])) $land_area_height=$_GET['land_area_height'];
+			else if(isset($item)) $land_area_height=$item->land_area_height;
+			else $land_area_height="";
+			
+			$land_area_text = "";
+			if(!empty($land_area_width) && !empty($land_area_height)){
+				$land_area_text = $land_area_width." X ".$land_area_height;
+			}
+			$post .= " land_area_text(%1) " . $land_area_text;
+			$post .= "(%3)";
+			
+			if($CI->input->post('bedroom')) $bedroom=$CI->input->post('bedroom');
+			else if (isset($_GET['bedroom'])) $bedroom=$_GET['bedroom'];
+			else if(isset($item)) $bedroom=$item->bedroom;
+			else $bedroom="";
+			$post .= " bedroom(%1) " . $bedroom;
+			$post .= "(%3)";
+			
+			if($CI->input->post('bathroom')) $bathroom=$CI->input->post('bathroom');
+			else if (isset($_GET['bathroom'])) $bathroom=$_GET['bathroom'];
+			else if(isset($item)) $bathroom=$item->bathroom;
+			else $bathroom="";
+			$post .= " bathroom(%1) " . $bathroom;
+			$post .= "(%3)";
+			
 						
 			if($CI->input->post('description')) $description=$CI->input->post('description');	
 			else $description="";		
@@ -363,7 +408,8 @@
 				$post .= " longitude(%1) " . $latlnt[1];
 				$post .= "(%3)";
 			}
-				
+			
+			
 			
 			return $post;
 	}
@@ -973,7 +1019,28 @@
 		
 	}
 	
+	function deleteDirectory($dir) {
+	    if (!file_exists($dir)) {
+	        return true;
+	    }
 	
+	    if (!is_dir($dir)) {
+	        return unlink($dir);
+	    }
+	
+	    foreach (scandir($dir) as $item) {
+	        if ($item == '.' || $item == '..') {
+	            continue;
+	        }
+	
+	        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+	            return false;
+	        }
+	
+	    }
+	
+	    return rmdir($dir);
+	}
 											
 										
 	function generate_item_thumbnail($itemid){
@@ -1005,6 +1072,14 @@
 
 	}
 	
+	function delete_item_thumbnail($itemid){
+		$base='photo/'.$itemid.'/';
+		if (file_exists($base."thumb")) {
+			deleteDirectory($base."thumb");
+		}
+	}
+	
+	
 	function watermark_item_photos($itemid,$user){
 		$filearr=array();
 		$base='photo/'.$itemid.'/';
@@ -1022,6 +1097,7 @@
 			
 			
 		}
+		delete_item_thumbnail($itemid);
 	}
 	
 	

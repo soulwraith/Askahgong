@@ -2,7 +2,7 @@
 
 <div class="pending-listing-container SUBPAGE_PENDING">
 	<div class="header">
-		Agent Request List
+		My Sales Lead
 		<div class="right icons profile-icon">
 		</div>
 	</div>
@@ -10,10 +10,22 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h4>
-				&bull; Request For You To Be Agent
+				&bull; Request(s) For You To Be Their Agent
 			</h4>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-warning">
+				Here are requests from users for you to represent them as their agent. 
+				<br>
+				Keep that reputation score up for more requests! 
+			</div>
+
+		</div>
+	</div>
+	
 	<div class="result-items-container">
 		<?php $data["type"] = "askForAccept"?>
 		<?php $data["itemsdata"] = $waitingResponseItemsData?>
@@ -41,6 +53,16 @@
 				</h4>
 			</div>
 			
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="alert alert-warning">
+				You can request to be a user's agent here, but take note maximum 10 agent requests for each sales item each time. 
+				So be fast and only target those within your expertise. 
+			</div>
+
 		</div>
 	</div>
 	

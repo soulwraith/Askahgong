@@ -5,8 +5,19 @@
 
 
 <?php 
-	$previous = array();
-	$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'New Posting'))?>
+	if($item->id==0){
+		$previous = array();
+		$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'New Posting'));	
+	}
+	else{
+		$previous = array(
+		 'My Posting' => 'posting/view',
+		 $item->actiontext." ".$item->paddingnamewithareatoshow => "item/id/".$item->id
+		);
+		$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'Edit Posting'));
+	}
+	
+?>
 
 
 <?php 
@@ -22,6 +33,9 @@
 	
 ?>
 
+
+
+
 <div class="PAGE_NEWPOST">
 	
 
@@ -32,7 +46,9 @@
 		<div class="row">
 			<div class="hidden-in-buy">
 				<div class="alert alert-warning">
-					You are not an agent, selling item must be assigned to an agent, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen 
+					You are seeing this message because your profile is not an agent. Only agents can post items for sale directly. 
+					<br>
+					<strong>You can continue posting this, but you will need to select an agent later to represent you for this sale.</strong> 
 				</div>
 			</div>
 		</div>
@@ -74,10 +90,10 @@
 					
 									
 					<div class="form-group margin-top">
-					      <label for="itemname">Unit Type</label> 
+					      <label for="itemname"><span class="hidden-in-sell">Requested </span>Unit Type</label> 
 					      <div class="styled-select"> 
 					      							
-							<select id="itemname" name="itemname" class="form-control buy sell">
+							<select id="itemname" name="itemname" class="form-control buy sell main-control">
 								<option class="hidden-object" value="" selected>Select Unit Type</option>
 								<?php foreach ($propertylist as $prop):?>
 									<?php if($prop=="House"):?>
@@ -104,22 +120,60 @@
 				   	
 				   <div class="form-group">
 				      <label for="price" class="pricelabel">Price (RM)</label> <div class="icons question-hover hidden-in-sell" data-toggle="tooltip" title="You can specify the maximum price that you are willing to pay." data-placement="right"></div>
-				      <input type="text" class="number-only sell buy form-control watermark" mark="" autocomplete="off" id="price" name="price" value="<?php if(isset($item)) echo $item->price;?>">
+				      <input type="text" class="number-only sell buy form-control watermark main-control" mark="" autocomplete="off" id="price" name="price" value="<?php if(isset($item)) echo $item->price;?>">
 				    </div>	
-				   	
-				   		 		   
-				   <div class="form-group">
-				      <label for="builtup">Built-up (Sqft.)</label> 
-				      	<a href="about/title/website#faq-builtup" target="_blank">
-				      		<div class="icons question-hover" data-toggle="tooltip" title="Click to learn about &apos;Built-up&apos;" data-placement="right">
-				      		</div>
-				      	</a>
-				      <input type="text" id="builtup" name="builtup" autocomplete="off" class="number-only sell form-control watermark" mark="" value="<?php if(isset($item)) echo $item->builtup;?>">
-				    </div>
-				   
+				    <div class="form-group">
+					   	<div class="row">
+					   		<div class="col-xs-12">
+					   			<label style="margin-bottom:0px;"><span class="hidden-in-sell">Requested </span>Size (Fill in any)</label> 
+					   			<a href="about/title/website#faq-builtup" target="_blank">
+						      		<div class="icons question-hover" data-toggle="tooltip" title="Click to learn about &apos;Built-up&apos;" data-placement="right">
+						      		</div>
+						      	</a>
+					   		</div>
+					   	</div> 	
+					   	<div class="row">
+					   		<div class="col-xs-6">
+					   			<div class="sub-label">&#x25cf; Built-up (Sqft.)</div>
+					   			<input type="text" id="builtup" name="builtup" autocomplete="off" class="number-only sell form-control watermark main-control" alternative="land_area" mark="" value="<?php if(isset($item)) echo $item->builtup;?>">
+					   		</div>
+					   		<div class="col-xs-6">
+					   			<div class="sub-label">&#x25cf; Land area (Sqft.)</div>
+					   			<div class="row">
+					   				<div class="col-xs-5 no-paddingright">
+					   					<input onchange="land_area_changed()" type="text" name="land_area_width" autocomplete="off" class="number-only form-control watermark main-control" mark="" value="<?php if(isset($item->land_area_width)) echo $item->land_area_width;?>">
+					   				</div>
+					   				<div class="col-xs-2 text-center" style="padding-top:10px;">
+					   					X
+					   				</div>
+					   				<div class="col-xs-5 no-paddingleft">
+					   					<input onchange="land_area_changed()" type="text" name="land_area_height" autocomplete="off" class="number-only form-control watermark main-control" mark="" value="<?php if(isset($item->land_area_height)) echo $item->land_area_height;?>">
+					   				</div>
+					   				
+					   				<input type="hidden" name="land_area" autocomplete="off" class="number-only sell form-control" alternative="builtup" value="<?php if(isset($item)) echo $item->land_area;?>">
+					   				
+					   			</div>
+					   			
+					   		</div>
+					   	</div>	   
+				   	</div>
+				 
 					
 					
-					
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+						      <label for="bedroom"><span class="hidden-in-sell">Requested </span>Bedroom</label> 
+						      <input type="text" id="bedroom" name="bedroom" autocomplete="off" class="number-only form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
+						    </div>
+						</div>
+						<div class="col-xs-6">
+							<div class="form-group">
+						      <label for="bathroom"><span class="hidden-in-sell">Requested </span>Bathroom</label> 
+						      <input type="text" id="bathroom" name="bathroom" autocomplete="off" class="number-only form-control watermark main-control" mark="Total bathrooms" value="<?php if(isset($item)) echo $item->bathroom;?>">
+						    </div>
+						</div>
+					</div>
 							
 						
 							
@@ -166,7 +220,7 @@
 							    	<div class='margin-top hidden-lg'></div>
 							    <?php endif?>	
 							    <div class="panel-heading" style="background-color:white;color:#DB6409;">
-							              <div class="panel-title"><?=$key?><small class="selected-count"></small>
+							              <div class="panel-title"><span class="hidden-in-sell">Requested </span><?=$key?><small class="selected-count"></small>
 							              	<?php if(strtolower($key)=="tenure"):?>
 							              	
 							              		<div class="icons question-hover pointer-cursor" onclick="direct_to_url('about/title/website#faq-tenure','_blank');" data-toggle="tooltip" title="Click to learn about &apos;Tenure&apos;" data-placement="right">
@@ -251,7 +305,7 @@
 			
 							</div>
 							<div class="feature-type-inner ">
-								<span buytext="Required Facility" selltext="Facility">Facility</span>
+								<span buytext="Requested Facility" selltext="Facility">Facility</span>
 							</div>
 						</div>
 					</div>
@@ -278,7 +332,7 @@
 								
 							</div>
 							<div class="feature-type-inner ">
-								<span buytext="Other Required Facilities" selltext="Other Facilities">Other Facilities</span>
+								<span buytext="Other Requested Facilities" selltext="Other Facilities">Other Facilities</span>
 							</div>
 						</div>
 					</div>

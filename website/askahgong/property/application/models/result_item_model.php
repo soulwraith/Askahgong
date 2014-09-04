@@ -450,7 +450,7 @@
 			}
 						
 			$sql="call askahgong.getItems(0,".$start.",".$limit.",".$userid.",NULL,1,
-				  (select group_concat(info.id) from askahgong.item_info info inner join
+				  (select group_concat(info.id order by info.id desc) from askahgong.item_info info inner join
 				  askahgong.transaction_record trans ON info.id=trans.itemid where info.pending=1
 				   and (select count(req.id) from askahgong.agent_request req where req.fromuserid=trans.userid and req.targetuserid=".$userid." and req.itemid=info.id) ".$append."
 				   and trans.removed=0 ".$id_restrict."))";	
@@ -479,7 +479,10 @@
 			push_task($name,"scalar",$sql,array());
 		}
 		
-		
+		function delete_all_agent_request_by_item_id($itemid){
+			$sql = "delete from askahgong.agent_request where itemid=?";
+			push_task("","nonquery",$sql,array($itemid));
+		}
 		
 		
 		

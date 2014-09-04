@@ -199,11 +199,34 @@
 		
 	}
 	
-	else if(starts_with(uri_string(),"pending_item")){
+	else if(starts_with(uri_string(),"pending_item/listing")){
 		
-		$title ="Pick An Agent";
+		$title ="My Sales Lead";
 		
 	}
+	
+	else if(starts_with(uri_string(),"pending_item")){
+		
+		$title ="You Need An Agent";
+		
+	}
+	
+	else if(starts_with(uri_string(),"agent_comment")){
+		
+		if($user->id==get_userid()){
+			$title = "My Review";
+		}
+		else {
+			
+			$title = $user->username."'s Review";
+			$description = "The reviews of agent ".$user->username." in the Ask Ah Gong community";
+				
+		}	
+		
+	}
+	
+	
+	
 	
 	else if (starts_with(uri_string(), "")) {
 		$title = "Welcome To Askahgong.com";

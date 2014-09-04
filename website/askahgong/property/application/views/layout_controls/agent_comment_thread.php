@@ -11,7 +11,7 @@
 				<?=generate_username_control($thread->userid,$thread->user_username,false,$thread->user_isonline,20)?> posted <span class="datetime"><?=ago($thread->dateandtime)?></span>
 				<br>
 				<em>
-					<i class="fa fa-<?php if($thread->point>0) echo "smile"; else echo "frown";?>-o"></i> <?=$thread->title?> 
+					<i class="icon-<?php if($thread->point>0) echo "smile"; else echo "frown";?>-o lh-15"></i> <?=$thread->title?> 
 					<?php if($agent_id==get_userid()):?>
 					<span class="<?php if($thread->point>0) echo "green"; else echo "red";?>"><?php if($thread->point>0) echo "+";?><?=$thread->point?> reputation points</span>
 					<?php endif?>
@@ -21,11 +21,11 @@
 				<br>
 				<div class="controls">
 						<?php if($agent_id==get_userid() || get_userid()==$thread->userid):?>
-						<a href="javascript:void(0)" onclick="focus_agent_comment_reply_textarea(this)"><i class="fa fa-reply"></i> Reply</a> 
+						<a href="javascript:void(0)" onclick="focus_agent_comment_reply_textarea(this)"><i class="icon-mail-reply"></i> Reply</a> 
 						<?php endif?>
 						
 						<?php if($agent_id==get_userid() && $thread->reported==0):?>
-						<a href="javascript:void(0)" onclick="report_thread(this,<?=$thread->id?>)"><i class="fa fa-exclamation-triangle"></i> Report</a> 
+						<a href="javascript:void(0)" onclick="report_thread(this,<?=$thread->id?>)"><i class="icon-warning"></i> Report</a> 
 						<?php endif?>
 						
 						<?php if($agent_id==get_userid()):?>
@@ -33,11 +33,11 @@
 						<?php endif?>
 						
 						<?php if(get_userid()==$thread->userid):?>
-						<a href="javascript:void(0)" onclick="delete_agent_comment_thread(this,<?=$agent_id?>)"><i class="fa fa-trash-o"></i> Delete</a>
+						<a href="javascript:void(0)" onclick="delete_agent_comment_thread(this,<?=$agent_id?>,false,function(){location.reload()})"><i class="icon-trash-o"></i> Delete</a>
 						<?php endif?>
 						
 						<?php if($thread->replies_count>2):?>
-						<a href="javascript:void(0)" onclick="get_all_agent_comment_replies(this,<?=$thread->id?>)"><i class="fa fa-caret-down"></i> See more replies(<?=$thread->replies_count-2?>)</a>
+						<a href="javascript:void(0)" onclick="get_all_agent_comment_replies(this,<?=$thread->id?>)"><i class="icon-chevron-down"></i> See more replies(<?=$thread->replies_count-2?>)</a>
 						<?php endif?>
 						
 				</div>
@@ -75,6 +75,8 @@
 			
 			<?php 
 				$info['type']="agent_review";
+				if(isset($comment_type)) $info['comment_type']=$comment_type;
+				
 			?>
 			<?=$this->load->view("layout_controls/no_result_info_text",$info)?>
 		</div>

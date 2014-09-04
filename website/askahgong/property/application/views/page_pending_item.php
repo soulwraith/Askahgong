@@ -2,18 +2,36 @@
 
 
 <?php 
-	$previous = array();
-	$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'Pick agent'))?>
+	$previous = array(
+		 'My Posting' => 'posting/view',
+		 $item->actiontext." ".$item->paddingnamewithareatoshow => "item/id/".$item->id
+		);
+	$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'Pick an agent'))?>
 
 <div class="container">
-	<div class="white-container">
+	<div class="white-container pending-item-container">
 		<div class="row">
 			<div class="col-lg-4">
 				<h4 style="margin-top:0px;">
 					You need an agent
 				</h4>
 				<div>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+				Your are seeing this because you have no agent representative. 
+				We want you to be represented by an agent when you are selling your properties, as there are many pitfalls that you can avoid by being represented by a professional. 
+				<br><br>
+				You can use the listing below to, 
+				<br><br>
+				<ol>
+					<li>
+							Accept an agent's request to represent your item of sale
+					</li>
+					<li>
+							Request an agent to represent you
+					</li>
+				</ol>
+			
+				<br>
+				
 				</div>
 			</div>
 			<div class="col-lg-8">
@@ -49,10 +67,26 @@
 						</div>
 						<div class="row">
 							<div class="col-lg-4 text-right">
+								<strong>Land area:</strong>
+							</div>
+							<div class="col-lg-8">
+								<?=$item->land_areatoshow?>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 text-right">
 								<strong>Features:</strong>
 							</div>
 							<div class="col-lg-8">
 								<?=$item->feature_comma_separated?>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4 text-right">
+								<strong>Facilities:</strong>
+							</div>
+							<div class="col-lg-8">
+								<?=$item->facility_comma_separated?>
 							</div>
 						</div>
 						<div class="row">
@@ -63,8 +97,17 @@
 								<?=cutofftext($item->descriptiontoshow,200)?>
 							</div>
 						</div>
+						
+						<div class="row margin-top">
+							<div class="col-lg-12 text-center">
+								<a class="btn btn-amber" href="posting/edit/<?=$item->id?>">Edit Post</a>
+								<button class="btn btn-amber" onclick="cancel_post_item()">Cancel Post</button>
+							</div>
+						</div>
+						
 					</div>
 				</div>
+				 
 				
 			</div>
 		</div>
@@ -84,7 +127,7 @@
 					<span class="pick-agent-message">
 						<span class="red"><?=concat_if_plural("agent","s",$propose_count)?> requested to be your agent</span> /
 						<?php if($request_count<10):?>
-						<span class="green">You can still request <span class="agent-count"><?=concat_if_plural("agent","s",10-$request_count)?></span> to be your agent. </span>
+						<span class="green">You can still invite <span class="agent-count"><?=concat_if_plural("agent","s",10-$request_count)?></span> to represent you. </span>
 						<?php endif?>
 						<span class="green <?php if($request_count<10) echo "hidden-object"?> full-agent-request">No more agent request allowed.</span>
 					</span>

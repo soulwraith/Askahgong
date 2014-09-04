@@ -12,8 +12,8 @@
 
 
 
+
 <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 	
@@ -56,7 +56,7 @@
 
 
 <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" /> 
-</head><link type="text/css" href="css/all_6_7.css" rel="stylesheet" media="screen"> 
+</head><link type="text/css" href="css/all_6_8.css" rel="stylesheet" media="screen"> 
 
   	
 

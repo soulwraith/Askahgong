@@ -21,7 +21,7 @@
 					</div>
 				<?php elseif($user->my_request>0):?>
 					<div class="margin-top">
-						<span class="green">Request sent, waiting agent respond.</span>
+						<span class="green">Request sent. You will be notified once the agent has accepted your request.</span>
 					</div>
 					
 				<?php else:?>		
@@ -44,7 +44,7 @@
 			
 			<div class="row details-row">
 				<div class="col-lg-3">
-					Comment(s)
+					Review(s)
 				</div>
 				<div class="col-lg-9">
 					<?=$this->load->view("user_controls/comment_total_number")?>
@@ -71,7 +71,7 @@
 					
 			<div class="row details-row">
 				<div class="col-lg-3">
-					Position
+					Role
 				</div>
 				<div class="col-lg-9">
 					<?=$user->role?>

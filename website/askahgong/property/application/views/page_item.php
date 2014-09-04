@@ -88,14 +88,14 @@
 						
 						<?php if($item->pending==1 && $item->removed==0):?>
 							<div class="alert alert-success">
-								<strong>This property is looking for agent!</strong> 
+								<strong>The seller is looking for an agent!</strong> 
 								
 								<?php if($item->my_agent_request>0):?>
 									<span>(Proposal sent)</span>
 								<?php elseif($item->owner_agent_request>0):?>
 									<span>(Property owner wanted you to be his/her agent, <a href="javascript:void(0)" onclick="accept_customer_request(this,<?=$item->userid?>,<?=$item->id?>,true)">accept</a>?)</span>
 								<?php elseif($item->request_count<10):?>
-								Click to <a href="javascript:void(0)" onclick="propose_to_customer(this,<?=$item->id?>,<?=$item->userid?>,true)">propose</a> to be his agent (<?=concat_if_plural(" slot","s",10-$item->request_count)?> left).
+								Click <a href="javascript:void(0)" onclick="propose_to_customer(this,<?=$item->id?>,<?=$item->userid?>,true)">here</a> to submit your proposal. (<?=concat_if_plural(" slot","s",10-$item->request_count)?> left).
 								<?php else:?>
 								No more slot available.
 								<?php endif?>
@@ -230,29 +230,42 @@
 								<?=$item->pricetoshow?>
 							</div>
 						</div>
-						<div class="main-details white">
+						<div class="main-details white <?php if($item->builtup!="") echo "two-line"?>">
 
 							<div class="details-title col-lg-4 col-md-5 col-sm-4 col-xs-12">
 								<?php if($item->type==1) echo "Req."?> Built-up
 
 							</div>
 							<div class="details-content col-lg-8 col-md-7 col-sm-8 col-xs-12">
+								<?php if($item->builtup!=""):?>
 								<?=$item->builtuptoshow?>
+								<?php else:?>
+									<small><small><?=$item->builtuptoshow?></small></small>
+								<?php endif?>
+								<?php if($item->builtup!=""):?>
+								<br>
+								<?=$item->psftoshow?>
+								<?php endif?>
 							</div>
 						</div>
+						
 						<div class="main-details">
+
 							<div class="details-title col-lg-4 col-md-5 col-sm-4 col-xs-12">
-								<?php if($item->type==0):?>
-								Price/Sqft.
-								<?php else:?>
-								Budget/Sqft.
-								<?php endif?>	
-								
+								<?php if($item->type==1) echo "Req."?> Land area
+
 							</div>
 							<div class="details-content col-lg-8 col-md-7 col-sm-8 col-xs-12">
-								<?=$item->psftoshow?>
+								<?php if($item->land_area!=""):?>
+									<?=$item->land_area_texttoshow?>
+								<?php else:?>
+									<small><small><?=$item->land_areatoshow?></small></small>
+								<?php endif?>
+							
 							</div>
 						</div>
+						
+						
 						<div class="main-details white">
 							<div class="details-title col-lg-4 col-md-5 col-sm-4 col-xs-12">
 								View(s)
@@ -262,7 +275,7 @@
 								 <i class="icons views-icon" data-toggle="tooltip" title="<?=$item->viewscounter?> people have shown an interest by viewing this page"></i>
 							</div>
 						</div>
-						<div class="main-details">
+						<div class="main-details two-line">
 							<div class="details-title col-lg-4 col-md-5 col-sm-4 col-xs-12">
 								Post Time
 							</div>

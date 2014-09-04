@@ -17,8 +17,11 @@
 		if (isset($item->feature)) $return_item->featurearr=explode(",",$item->feature);
 		if (isset($item->psf)) $return_item->psf=str_replace(",","",$item->psf);
 		if (isset($item->psf)) $return_item->psftoshow="RM ".$item->psf."/sqft.";	
-		if (isset($item->builtup)) $return_item->builtup=str_replace(",","",$item->builtup);	
-		if (isset($item->builtup)) $return_item->builtuptoshow=$item->builtup." sqft.";	
+		if (isset($item->builtup) || $item->builtup==0 ) $return_item->builtup=str_replace(",","",$item->builtup);	
+		if (isset($item->builtup) || $item->builtup==0 ) $return_item->builtuptoshow=$item->builtup." sqft.";	
+		if (isset($item->land_area) || $item->land_area==0 ) $return_item->land_area=str_replace(",","",$item->land_area);	
+		if (isset($item->land_area) || $item->land_area==0) $return_item->land_areatoshow=$item->land_area." sqft.";	
+		if (isset($item->land_area_text)) $return_item->land_area_texttoshow=$item->land_area_text." sqft.";	
 		if (isset($item->description)) $return_item->description=$item->description;	
 		if (isset($item->posttime)) $return_item->posttime=$item->posttime;	
 		if (isset($item->phone)) $return_item->phone=$item->phone;	
@@ -45,6 +48,8 @@
 		if (isset($item->request_count)) $return_item->request_count=$item->request_count;	
 		if (isset($item->my_agent_request)) $return_item->my_agent_request=$item->my_agent_request;	
 		if (isset($item->owner_agent_request)) $return_item->owner_agent_request=$item->owner_agent_request;	
+		if (isset($item->bedroom) || $item->bedroom==0) $return_item->bedroom=$item->bedroom;	
+		if (isset($item->bathroom) || $item->bathroom==0) $return_item->bathroom=$item->bathroom;	
 		
 		if (isset($item->name)) {
 			if(strtolower($item->name)=="semi detached house"){
@@ -138,13 +143,40 @@
 		}
 		
 	}
-			
 	
-	if (isset($item->builtup)){
-		if(($return_item->builtup)==""){
-			$return_item->builtuptoshow="User did not specify builtup.";
+	
+	
+	if (isset($item->land_area)){
+		
+		if($item->land_area=="0") $return_item->land_area = "";
+		
+		if(($return_item->land_area)==""){
+			$return_item->land_areatoshow="User did not specify land area.";
+			
 		}
 	}
+	
+	
+	if (isset($item->builtup)){
+			
+		if($item->builtup=="0") $return_item->builtup = "";	
+		
+		if(($return_item->builtup)==""){
+			$return_item->builtuptoshow="User did not specify builtup.";
+			
+		}
+	}
+	
+	
+	if($return_item->builtup!="" || ($return_item->builtup=="" && $return_item->land_area=="")){
+		$return_item->sizetoshow = $return_item->builtuptoshow;
+	}
+	else{
+		$return_item->sizetoshow = $return_item->land_areatoshow;
+	}
+	
+	
+	
 	
 	if (isset($item->feature)){
 		if(($return_item->feature)==""){
@@ -181,7 +213,11 @@
 	}
 		
 		
-	
+	if(isset($item->land_area_text) && !empty($item->land_area_text)){
+		$temp = explode("X",$item->land_area_text);
+		$return_item->land_area_width = trim($temp[0]);
+		$return_item->land_area_height = trim($temp[1]);
+	}
 
     $return_item->areaidlevelstring="";
 	$return_item->areanametoshow="";
@@ -243,22 +279,44 @@
 		}
 		
 	 $return_item->allfeatures=Array();
+	 
+	 	if(isset($return_item->bedroom) && $return_item->bedroom!=0){
+			$return_item->allfeatures[$return_item->bedroom."<span data-toggle='tooltip' title='number of bedroom(s)' class='icon-bed17 margin-left-tiny lh-17'></span>"]="1";
+		}
+		
+		
+		if(isset($return_item->bathroom) && $return_item->bathroom!=0){
+			$return_item->allfeatures[$return_item->bathroom."<span data-toggle='tooltip' title='number of bathroom(s)' class='icon-bathroom margin-left-tiny lh-17'></span>"]="1";
+		}
+	 	
+		$facility_arr = Array();
+		$feature_arr = Array();
 		if (isset($return_item->featurearr)){
-			$return_item->feature_comma_separated = implode(", ",$return_item->featurearr);
+			
 			foreach($return_item->featurearr as $feature){
 				if($feature!=""){
-					if (in_array($feature, array("Freehold","Leasehold","Malay Reserved Land","Renovated","Corner","1 Storey","1.5 Storey","2 Storey","2.5 Storey","3 Storey"))) {
+					if (in_array($feature, array("Freehold","Leasehold","Malay Reserved Land","Renovated","Corner","End Lot","1 Storey","1.5 Storey","2 Storey","2.5 Storey","3 Storey"))) {
 				  	   $return_item->allfeatures[$feature]="1";
+						array_push($feature_arr,$feature);
 					}
 					else{
 					   $return_item->allfeatures[$feature]="2";
+						array_push($facility_arr,$feature);
 					}
 				}
 			
 			}
-
-			
+			$return_item->feature_comma_separated = implode(", ",$feature_arr);
+			if(count($feature_arr)==0){
+				$return_item->feature_comma_separated = "-";
+			}
+			$return_item->facility_comma_separated = implode(", ",$facility_arr);
+			if(count($facility_arr)==0){
+				$return_item->facility_comma_separated = "-";
+			}
 		}
+		
+		
 		
 		
 		
@@ -306,6 +364,15 @@
 					$finaltext.="at ".$locationtext;
 				}
 				$activity->finaltext=ucwords($finaltext);
+				
+				
+				if(count($temparr)>5){
+					
+					$activity->original_userid=$temparr[5];
+					$activity->original_username=$temparr[6];
+				}
+				
+				
 			}
 			return $activity;
 	 	}

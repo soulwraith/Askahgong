@@ -115,7 +115,8 @@ class Posting extends MY_Controller {
 		$this->result_item_model->get_item_full_data($itemid);
 		$this->property_model->get_propertylist();	
 		$this->property_model->get_all_features(0);
-		
+		$userid = get_userid();
+		$this->user_model->get_user_by_userid($userid,$userid);
 		$data['type'] = "edit";
 		
 		GLOBAL $tasksCompletedCallBack;
@@ -131,10 +132,7 @@ class Posting extends MY_Controller {
 			$data['featuresdict']=handle_features($data);
 			$data['item']=handle_item_data($data['item']);
 			
-			if($data['item']->pending=="1" && $data['item']->userid==get_userid()){
-				redirect("pending_item/id/".$data["item"]->id);
-			}
-			else if($data["item"]->userid!=get_userid()){
+			if($data["item"]->userid!=get_userid()){
 				redirect("redirect/cannot_access");
 			}
 			
@@ -153,7 +151,6 @@ class Posting extends MY_Controller {
 		$content_string=convert_post_data_to_content_string(null,$edit_id);
 		$content_string .= " handle_url(%1) " . base_url("posting/handle_file_api");
 		$content_string .= "(%3)";
-		
 		
 		
 		user_validated(true,"posting/newpost");
@@ -196,7 +193,7 @@ class Posting extends MY_Controller {
 		commitTasks();
 		GLOBAL $data;
 		if($data["is_pending"]!="1"){
-			watermark_item_photos($itemid,$data["user"]);
+			watermark_item_photos($item_id,$data["user"]);
 		}
 		
 	}
@@ -209,6 +206,7 @@ class Posting extends MY_Controller {
 		$userid=get_userid();
 		$id=$this->input->post("itemid");
 		$this->result_item_model->delete_post($id,$userid);
+		$this->result_item_model->delete_all_agent_request_by_item_id($id);
 		$this->activity_model->insert_activity(9,$userid,$id);
 		commitTasks();
 	}
