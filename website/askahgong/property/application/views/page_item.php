@@ -766,6 +766,7 @@ var PAGE_ITEM_onpage,
     PAGE_ITEM_nearest_xhr=null,
     PAGE_ITEM_related_xhr=null,
     PAGE_ITEM_current_landmark_id;
+    PAGE_ITEM_deleted = false;
 
 
 	PAGE_ITEM_onpage=true;
@@ -775,6 +776,7 @@ var PAGE_ITEM_onpage,
 	<?php endforeach?>
 	
 	PAGE_ITEM_id="<?=$item->id?>";
+	PAGE_ITEM_userid="<?=$item->userid?>";
 	PAGE_ITEM_type="<?=$item->type?>";
 	PAGE_ITEM_latitude="<?=$item->latitude?>";
 	PAGE_ITEM_longitude="<?=$item->longitude?>";
@@ -782,6 +784,9 @@ var PAGE_ITEM_onpage,
 	PAGE_ITEM_item_lastseen="<?=strtotime($item_lastseen)?>";
     PAGE_ITEM_processid=<?=$processid?>;
     PAGE_ITEM_totalcount=<?=$totalcount?>;
+    <?php endif?>
+    <?php if($item->removed):?>
+    PAGE_ITEM_deleted=true;
     <?php endif?>
 
 </script>

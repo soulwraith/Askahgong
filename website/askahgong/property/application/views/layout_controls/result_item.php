@@ -159,7 +159,7 @@
 					
 					<div class="col-xs-12 col-sm-12">
 						<div class="details overflow-ellipsis" style="padding-top:1px;">
-							<strong>&#x25cf;&nbsp;<?php if($item->type==1) echo "Req. "?>
+							<strong>&#x25cf;<?php if($item->type==1) echo "Req. "?>
 								<?php if($item->builtup!="" || ($item->builtup=="" && $item->land_area=="")):?>
 								Built-up:
 								<?php else:?>

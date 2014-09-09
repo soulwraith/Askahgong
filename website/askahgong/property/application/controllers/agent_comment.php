@@ -158,6 +158,7 @@ class Agent_comment extends MY_Controller {
 		if(!empty($data["thread"])){
 	
 			$this->points_model->add_points($data["thread"]->agent_id,"REVOKED",$data["thread"]->point);
+			$this->agent_comment_model->delete_all_agent_comment_activity($agent_id,$userid);
 			$this->agent_comment_model->delete_previous_agent_comment_thread($agent_id,$userid);
 			commitTasks();
 		}

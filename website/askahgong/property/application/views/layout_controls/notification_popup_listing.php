@@ -109,7 +109,7 @@
 				<?php case "agentRequest": ?>
 			
 				  
-					<a class="no-underline" oncontextmenu="mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" onclick="close_all_topmenu_popup();return mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" href="<?=$notification->item->url?>" target="_blank">
+					<a class="no-underline" oncontextmenu="mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" onclick="close_all_topmenu_popup();return mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" href="<?=$notification->item->url?><?php if(is_verified_agent($user)) echo "#request"?>" target="_blank">
 					
 						<div class="img-container">
 							<img class="img-responsive" src="<?=$notification->item->firstFile?>">
@@ -168,7 +168,7 @@
 							<span class="text1"><?=generate_username_control($notification->userid,$notification->username,true,$notification->isonline,20,true)?></span>
 							<br>
 							<?php if(!is_verified_agent($user)):?>	
-								has agreed to represent you					
+								is now your representative for					
 							<?php else:?>
 								has accepted you to be his/her agent
 							<?php endif?>

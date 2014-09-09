@@ -28,7 +28,7 @@
 					<?php foreach($anchors as $link):?>
 						<div class="selector <?php if(str_replace("%20"," ",strtolower($title))==strtolower($link->title)) echo "selected"?>">
 							<div class="left">
-								<a href="about/title/<?=strtolower($link->title)?>"><?=$counter.". "?><?php if(strtolower($link->title)=="sms") echo "SMS/Whatsapp"; else echo $link->title?></a>
+								<a href="about/title/<?=strtolower($link->title)?>"><?=$counter.". "?><?php if(strtolower($link->title)=="sms") echo "SMS"; else echo $link->title?></a>
 							</div>
 							<div class="next-arrow icons hidden-object"></div>
 						</div>
@@ -150,7 +150,7 @@
 					<div class="feature-icon icons" style="background-position:-178px -575px;top:10px;">
 					</div>
 					<div class="text">
-						SMS/Whatsapp
+						SMS
 					</div>
 					
 					<div class="indicator icons">
@@ -192,7 +192,7 @@
 					</div>	
 					<div class="col-xs-5">
 						<div>
-							<span style="font-size:20px;font-weight:bold;">Looking for a dream home online</span>, but hate to run through endless online searches? Have a hot property to sell, but hate to fill in complicated online forms? Find out how you can use our SMS/Whatsapp service to do that and start putting those requests in @ <strong style='color:#fd9c28'>6017-8761590</strong>
+							<span style="font-size:20px;font-weight:bold;">Looking for a dream home online</span>, but hate to run through endless online searches? Have a hot property to sell, but hate to fill in complicated online forms? Find out how you can use our SMS service to do that and start putting those requests in @ <strong style='color:#fd9c28'>6017-8761590</strong>
 						</div>	
 						<div class="margin-top">
 							 <a onclick="focus_question('faq_post')" href="javascript:void(0)">Scroll below</a> for instructions and screenshots.

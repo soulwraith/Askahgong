@@ -175,4 +175,18 @@
 		     push_task("thread","json_single",$sql,array($agent_id,$userid));
 		}
 	 	
+	 	
+	 	function delete_all_agent_comment_activity($agent_id,$userid){
+	 		$sql = "DELETE FROM
+	 					askahgong.activity
+	 				where 
+	 					(action = 'agentReview' and reserved IN (select th.id from askahgong.agent_comment_thread th where th.userid='".$userid."' and th.agent_id='".$agent_id."'))
+	 				OR
+	 					(action = 'agentReviewReply' and reserved IN (select rp.id from askahgong.agent_comment_reply rp where rp.id IN (select id from askahgong.agent_comment_thread th where th.userid='".$userid."' and th.agent_id='".$agent_id."')))
+	 				";
+			 push_task("","nonquery",$sql,array());
+	 	}
+	 	
+		
+		
     }  
