@@ -174,9 +174,13 @@
 				      	</div>
 					</a>
 				</div>
-				<div style="margin-top:-5px;">
+				<div style="margin-top:-5px;" class="position-relative">
 					<span class="transformers level-font"><span class="text inline-block">Level</span><span class="count"><?=$user->level?></span></span>
-					<?=$this->load->view("user_controls/comment_total_number")?>
+					<?php if(is_verified_agent($user)):?>
+					<div class="comment-total">
+						<?=$this->load->view("user_controls/comment_total_number",Array("userID"=>$user->id,"commend"=>$user->good_comment_count,"report"=>$user->bad_comment_count))?>
+					</div>
+					<?php endif?>
 					
 					<?=$this->load->view("wrapper/user_experience_bar")?>
 				</div>

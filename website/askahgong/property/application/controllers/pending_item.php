@@ -120,7 +120,7 @@ class Pending_item extends MY_Controller {
 		GLOBAL $data;
 		$data["type"] = "normal";
 		$data["data_only"] = true;
-		echo $this->load->view("layout_controls/result_item_simple",$data);
+		echo $this->load->view("layout_controls/result_item_sales_lead",$data);
 	}
 	
 	function find_agents(){
@@ -243,6 +243,13 @@ class Pending_item extends MY_Controller {
 		echo $data["item"]->url;
 		
 		
+	}
+	
+	function agent_reject_customer(){
+		$userid = get_userid();
+		$item_id = $this->input->post("item_id");
+		$this->result_item_model->agent_decline_customer_request($userid,$item_id);
+		commitTasks();
 	}
 	
 	

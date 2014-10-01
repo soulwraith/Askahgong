@@ -13,6 +13,9 @@
 
 
 
+
+
+
 <link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
 
 
@@ -56,7 +59,7 @@
 
 
 <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" /> 
-</head><link type="text/css" href="css/all_6_9.css" rel="stylesheet" media="screen"> 
+</head><link type="text/css" href="css/all_7.css" rel="stylesheet" media="screen"> 
 
   	
 

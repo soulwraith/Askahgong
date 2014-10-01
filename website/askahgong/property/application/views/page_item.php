@@ -87,19 +87,56 @@
 					<div class="section-fixed <?=$type?>">
 						
 						<?php if($item->pending==1 && $item->removed==0):?>
-							<div class="alert alert-success">
-								<strong>The seller is looking for an agent!</strong> 
+							
+							<?php 
+								$html = "<strong>The seller is looking for an agent!</strong><br>";	
 								
-								<?php if($item->my_agent_request>0):?>
-									<span>(Proposal sent)</span>
-								<?php elseif($item->owner_agent_request>0):?>
-									<span>(Property owner wanted you to be his/her agent, <a href="javascript:void(0)" onclick="accept_customer_request(this,<?=$item->userid?>,<?=$item->id?>,true)">accept</a>?)</span>
-								<?php elseif($item->request_count<10):?>
-								Click <a href="javascript:void(0)" onclick="propose_to_customer(this,<?=$item->id?>,<?=$item->userid?>,true)">here</a> to submit your proposal. (<?=concat_if_plural(" slot","s",10-$item->request_count)?> left).
-								<?php else:?>
-								No more slot available.
-								<?php endif?>
-							</div>
+								if($item->owner_agent_request>0){
+									$html .= "Property owner wants you to represent him/her in this transaction.";
+								}
+								else{
+									$html .= '<span class="label label-green" style="font-size:0.85em;"><i class="icon-agent vertical-middle" style="font-size:15px;"></i> Agents ('.$item->request_count.'/10)</span>
+							 		     propose to represent for this property. Submit your proposal now to request to represent his/her in this txn.';
+								}
+								
+								$html .= "<div class='action'>";
+								
+								if($item->my_agent_request>0){
+									$html .= '<div class="green vertical-center"><strong><i class="icon-tick"></i><br>Proposed</strong></div>';
+								}
+								else if($item->agent_reject_request>0){
+									$html .= '<div class="red vertical-center"><strong><i class="icon-cross"></i><br>Declined</strong></div>';
+								}
+								else if($item->owner_agent_request>0){
+									$html .= '<div class="vertical-center buttons">
+												<div class="padding-equal grey-bg">
+													<button type="button" onclick="accept_customer_request(this,'.$item->userid.','.$item->id.',true)" class="btn btn-green">Accept</button>
+												</div>
+												
+												<div class="padding-equal grey-bg">
+													<button type="button" onclick="reject_customer_request(this,'.$item->id.',true)" class="btn btn-red">Decline</button>
+													
+												</div>
+											 </div>';
+								}
+								elseif($item->request_count<10){
+									$html .= '<div class="padding-equal grey-bg"><button type="button" onclick="propose_to_customer(this,'.$item->id.','.$item->userid.',true)" class="btn btn-green">Propose</button></div>';
+								}
+								else{
+									$html .= '<div class="red vertical-center"><strong><i class="icon-full"></i><br>Full</strong></div>';
+								}
+								
+								$html .= "</div>";
+								
+							?>
+							
+							
+							<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"success","no_icon"=>"true",
+								"alert_html"=>$html))
+							?>
+							
+							
+						
 							
 						<?php endif?>	
 						

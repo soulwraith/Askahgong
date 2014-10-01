@@ -7,32 +7,72 @@
 		<?php else:?>
 			<?=$user->username?>'s Review
 		<?php endif?>
-		<div class="right icons profile-icon">
+		<div class="right icons review-icon">
 		</div>
 	</div>
 	
-	<div class="alert alert-warning" style="margin:10px 0px;">
-		<?php if($user->id==get_userid()):?>
-			 Your reputation score shows how much you have contributed to building the Ask Ah Gong community, and making it easier for buyers or sellers to complete the transactions through your service.
-			 <br>
-			 Normally,<strong> agents with high reputation will get more requests from users without agent representative.</strong>
-			<br>
-			<a>How can I improve my reputation score?</a>
-		<?php else:?>
-			Your review will help to improve on <?=$user->username?> score, and help <?=$user->username?> to build his business. You can also let <?=$user->username?> know how he can improve on his service. 
-		<?php endif?>
+	
+	
+	
+	
+	<?php if($user->id==get_userid()):?>
+		<?php $html = "Your reputation score shows how much you have contributed to building the Ask Ah Gong community, and making it easier for buyers or sellers to complete the transactions through your service.
+						 <br>
+						 Normally,<strong> agents with high reputation will get more requests from users without agent representative.</strong>
+						<br>
+						<a>How can I improve my reputation score?</a>"
+		?>
+		 
+	<?php else:?>
+		
+		<?php $html = "Your review will help to improve on ".$user->username." score, and help ".$user->username." to build his business. You can also let ".$user->username." know how he can improve on his service."
+		?>
+		
+		
+	<?php endif?>
+	
+	<div class="row margin-top">
+		<div class="col-xs-12">
+			<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+						"alert_html"=>$html))
+					?>
+		</div>
+		
 	</div>
+	
+	
 	
 	
 	<?php if($agent_id!=get_userid()):?>
+		
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="comment-container">
-				<button type="button" onclick="show_comment_container('commend')" class="btn btn-primary btn-xs"><i class="icon-smile-o lh-17"></i> Commend This Agent</button>
-				<button type="button" onclick="show_comment_container('report')" class="btn btn-primary btn-xs"><i class="icon-frown-o lh-17"></i> Report This Agent</button>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 text-center comment-type">
+						<i class="icons commend pointer-cursor" onclick="show_comment_container('commend')">
+							
+						</i>
+						
+					</div>
+					<div class="col-xs-12 col-sm-6 text-center comment-type">
+						<i class="icons report pointer-cursor" onclick="show_comment_container('report')">
+							
+						</i>
+					</div>
+				</div>
+				
+				
 			</div>
+			
+			
 		</div>
-	</div>
+		
+	</div>	
+		
+		
+	
 	
 	
 	<div class="row commend-container hidden-object">
@@ -103,61 +143,52 @@
 		<div class="col-xs-12">
 			<div class="reputation-container">
 				
-			
-				<div class="details-label">&#x25cf; <?=$user->username?>'s Reputation
-				</div>
-				
-				<div class="details">
+				<div class="col-xs-12 col-md-6 col-sm-5 level-container">
+					<div class="details-label"><?=$user->username?>'s Reputation
+					</div>
 					
-					<div class="col-xs-12 col-lg-6">
-						<div>
-							<span class="transformers level-font"><span class="text inline-block">Level</span><span class="count"> <?=$user->level?></span></span>
-						</div>
-						<div style="margin-top:-5px;">
-							<?=$this->load->view("wrapper/user_experience_bar")?>
-							<div class="current-points">
-								<?=$user->current_exp?>/<?=$user->nextlevel_exp?> Points
-							</div>
-						</div>
+					<div class="details">
 						
+						
+							<div>
+								<span class="transformers level-font"><span class="text inline-block">Level</span><span class="count"> <?=$user->level?></span></span>
+							</div>
+							<div style="margin-top:-5px;">
+								<?=$this->load->view("wrapper/user_experience_bar")?>
+								<div class="current-points">
+									<?=$user->current_exp?>/<?=$user->nextlevel_exp?> Points
+								</div>
+							</div>
 					</div>
 				</div>
-				
-				
-			
-				
-				
+				<div class="col-sm-7 col-xs-12 col-md-6 col-lg-6">
+					<div class="sub-details">
+						<span class="title">Total Posting(s) :</span>
+						<span class="content"><a href="posting/view/<?=$user->id?>" target="_blank"><?=$user->postcount?></a></span>
+					</div>
+					
+					<div class="sub-details">
+						<span class="title">Total Discussion Topic(s) :</span>
+						<span class="content"><?=$total_topic_count?></span>
+					</div>
+					
+					<div class="sub-details">
+						<span class="title">Total Discussion Reply(s) :</span>
+						<span class="content"><?=$total_comment_count?></span>
+					</div>
+					
+					<div class="sub-details">
+						<span class="title">Total Review(s) :</span>
+						<span class="content"><?=$this->load->view("user_controls/comment_total_number",Array("goodAction"=>'switch_review_page(this,"good",'.$agent_id.')',"badAction"=>'switch_review_page(this,"bad",'.$agent_id.')',"userID"=>$user->id,"commend"=>$good_count,"report"=>$bad_count))?></span>
+					</div>
+				</div>
 				<div class="clear"></div>
 			</div>
 		</div>
 		
 	</div>
 	
-	<div class="row">
-		<div class="col-xs-12">
-			<div class="sub-details">
-				<span class="title">&bull; Total Posting(s) :</span>
-				<span class="content"><a href="posting/view/<?=$user->id?>" target="_blank"><?=$user->postcount?></a></span>
-			</div>
-			
-			<div class="sub-details">
-				<span class="title">&bull; Total Discussion Topic(s) :</span>
-				<span class="content"><?=$total_topic_count?></span>
-			</div>
-			
-			<div class="sub-details">
-				<span class="title">&bull; Total Discussion Reply(s) :</span>
-				<span class="content"><?=$total_comment_count?></span>
-			</div>
-			
-			<div class="sub-details">
-				<span class="title">&bull; Total Review(s) :</span>
-				<button type="button" onclick="switch_review_page(this,'good',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$good_count?> <span class="icon-smile-o lh-18"></span></button>
-				<button type="button" onclick="switch_review_page(this,'bad',<?=$agent_id?>)" class="btn btn-amber btn-sm review-switch"><?=$bad_count?> <span class="icon-frown-o lh-18"></span></button>
-			</div>
-			
-		</div>
-	</div>
+	
 	<div class="agent-comments-container">
 		<?=$this->load->view("layout_controls/agent_comment_thread")?>
 	</div>

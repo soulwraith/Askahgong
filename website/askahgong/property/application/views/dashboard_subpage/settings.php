@@ -85,21 +85,23 @@
 						
 					</div>
 					
-					<div class="alert alert-info" style="font-size:0.9em;line-height:20px;">
-						Allow you to decide when, how or what you want to be notified on, with the settings below. Points to note, 
-						<ul style="list-style:disc">
-							<li>
-								Remember to change your <span data-toggle="tooltip" title="Click to customize your working hour."><a href="profile#workingfrom" target="_blank">working hours</a></span> to suit your need. 
-							</li>
-							<li>
-								 You might read very fast but it is not advisable to choose to be notified for all new posting(s). This is so that you don’t get all the notifications that you do not want <strong>(It is not fun to receive 200 SMS-es per day!)</strong>. 
-							</li>
-							<li>
-								You can select <strong>multiple</strong> types of notifications by adding settings with different criteria. 
-							</li>
-						</ul>
+					<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+								"alert_html"=>'Allow you to decide when, how or what you want to be notified on, with the settings below. Points to note, 
+										<ul style="list-style:disc">
+											<li>
+												Remember to change your <span data-toggle="tooltip" title="Click to customize your working hour."><a href="profile#workingfrom" target="_blank">working hours</a></span> to suit your need. 
+											</li>
+											<li>
+												 You might read very fast but it is not advisable to choose to be notified for all new posting(s). This is so that you don’t get all the notifications that you do not want <strong>(It is not fun to receive 200 SMS-es per day!)</strong>. 
+											</li>
+											<li>
+												You can select <strong>multiple</strong> types of notifications by adding settings with different criteria. 
+											</li>
+										</ul>'))
+							?>
 					
-					</div>
+					
+				
 					
 								
 					<div class="form-group">

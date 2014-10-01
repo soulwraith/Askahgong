@@ -9,11 +9,14 @@
 	
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="alert alert-info">
-				<strong>Q: Why do we register your number?</strong> Ask Ah Gong needs your number to notify you of property opportunities based on your request and user’s message. 
-				<br><strong>Q: Will we spam you?</strong> No. In fact, it is default that we don’t send you anything unless you request for it.  
-				<br><strong>Q: Will we compromise your number?</strong> No. Your privacy is our utmost concern.
-			</div>
+			
+			<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+					"alert_html"=>"<strong>Q: Why do we register your number?</strong> Ask Ah Gong needs your number to notify you of property opportunities based on your request and user’s message. 
+									<br><strong>Q: Will we spam you?</strong> No. In fact, it is default that we don’t send you anything unless you request for it.  
+									<br><strong>Q: Will we compromise your number?</strong> No. Your privacy is our utmost concern."))
+				?>
+			
+			
 		</div>
 	</div>
 	

@@ -4,18 +4,21 @@
 <div class="row agent-comment-parent" thread_id="<?=$thread->id?>">
 	<div class="col-xs-12">
 		<div class="agent-comment-container">
+			
+			<img class="discussion-shadow bottom" src="image/discussion_shadow_bottom.png">
+			
 			<div class="col-xs-2 col-lg-1_5">
 				<img class="img-responsive" src="<?=get_user_profile_pic($thread->userid)?>">
 			</div>
 			<div class="col-xs-10 col-lg-10_5" style="padding-left:0px;">
 				<?=generate_username_control($thread->userid,$thread->user_username,false,$thread->user_isonline,20)?> posted <span class="datetime"><?=ago($thread->dateandtime)?></span>
 				<br>
-				<em>
-					<i class="icon-<?php if($thread->point>0) echo "smile"; else echo "frown";?>-o lh-15"></i> <?=$thread->title?> 
-					<?php if($agent_id==get_userid()):?>
-					<span class="<?php if($thread->point>0) echo "green"; else echo "red";?>"><?php if($thread->point>0) echo "+";?><?=$thread->point?> reputation points</span>
-					<?php endif?>
-				</em>
+				
+				<i class="icons <?php if($thread->point>0) echo "commend"; else echo "report";?>"></i> <?=$thread->title?> 
+				<?php if($agent_id==get_userid()):?>
+				<em class="<?php if($thread->point>0) echo "blue"; else echo "red";?>"><?php if($thread->point>0) echo "+";?><?=$thread->point?> reputation points</em>
+				<?php endif?>
+				
 				<br>
 				<?=$thread->content?>
 				<br>
@@ -55,9 +58,16 @@
 			
 			<div class="clear"></div>
 			<?php if($agent_id==get_userid() || get_userid()==$thread->userid):?>
-			<div class="write-reply col-xs-12">
-				<textarea class="form-control" onkeydown="submit_agent_comment_reply(this,event,<?=$thread->id?>)" rows="1" placeholder="Write a comment, press enter to post."></textarea>
+			<div class="row">
+				<div class="write-reply col-xs-12">
+					<textarea class="form-control" onkeydown="submit_agent_comment_reply(this,event,<?=$thread->id?>)" rows="1" placeholder="Write a comment, press enter to post."></textarea>
+				
+					<button class="btn" onclick="submit_agent_comment_reply($(this).prev('textarea'),null,<?=$thread->id?>)">
+						Post
+					</button>
+				</div>
 			</div>
+			
 			<?php endif?>
 			
 		</div>

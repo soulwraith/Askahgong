@@ -19,7 +19,7 @@
 		<?php if($isAgent):?>
 		<a href="agent_comment/view">
 			<div class="menu-item-container <?php if($dashboard_page=="agent_comment") echo "selected"?>">
-				<div class="menu-image-container"><div class="menu-image icons profile"></div></div>
+				<div class="menu-image-container"><div class="menu-image icons review"></div></div>
 				<div class="menu-item ">
 					Review
 				</div>
@@ -39,7 +39,7 @@
 		<?php if($isAgent):?>
 		<a href="pending_item/listing">
 			<div class="menu-item-container <?php if($dashboard_page=="pending_item") echo "selected"?>">
-				<div class="menu-image-container"><div class="menu-image icons profile"></div></div>
+				<div class="menu-image-container"><div class="menu-image icons sales-lead"></div></div>
 				<div class="menu-item ">
 					Sales Lead
 				</div>

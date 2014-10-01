@@ -3,14 +3,16 @@
 <?php if(!isset($data_only)):?>
 <div class="AGENT_LISTING white-container">
 	
-	<div class="row">
-		<div class="col-xs-12">
-			<h5>
-				Agents List
-			</h5>
+	
+	<div class="list-header slate-line">
+		Agents List
+		<img class="list-header-shadow top" src="image/discussion_shadow_top.png">
+		<div class="fade-separator">
+
 		</div>
-		
 	</div>
+	
+	
 	<div class="list">
 		
 	
@@ -21,10 +23,10 @@
 		<div class="col-xs-3">
 			<img class="img-responsive inline-block" src="<?=get_user_profile_pic($agent->id)?>" style='max-height:86px;'>
 		</div>
-		<div class="col-xs-9">
+		<div class="col-xs-9 no-paddingleft">
 			<div class="vertical-bottom icons inline-block user-status user-state <?php if($agent->isonline) echo "online"; else echo "offline";?>" userid="<?=$agent->id?>" style="margin-right:0px">
 			</div>
-			<strong><?=$agent->username?></strong>
+			<strong class="text2"><?=$agent->username?></strong>
 			
 			<div class="text1 transition">
 				<?=$agent->role?> 
@@ -34,11 +36,11 @@
 			</div>
 			
 			<div class="green request-sent <?php if(!$agent->my_request>0) echo "hidden-object"?>">
-				<strong>Request Sent</strong>
+				<span class="label label-green">Request Sent</span>
 			</div>
 			
 			<div class="red <?php if(!$agent->agent_request>0) echo "hidden-object"?>">
-				<strong>Waiting your response</strong>
+				<span class="label label-red">Waiting your response</span>
 			</div>
 			
 		</div>
@@ -63,9 +65,16 @@
 <?php if(!isset($data_only)):?>	
 	</div>
 	
-	<div>
+	<div class="fade-separator">
+			
+	</div>
+	
+	<div class="searchbox-container">
 		<form>
 			<input onkeyup="keydown_find_agent(this)" name="agent_keyword" type="text" placeholder="Search for agents.." class="form-control">
+			
+			<a class="submit-button icons right" onclick="keydown_find_agent($(this).prev('input'));"></a>
+			
 		</form>
 	</div>
 	

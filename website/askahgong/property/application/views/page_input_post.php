@@ -45,17 +45,23 @@
 		
 		<div class="row">
 			<div class="hidden-in-buy">
-				<div class="alert alert-warning">
-					You are seeing this message because your profile is not an agent. Only agents can post items for sale directly. 
-					<br>
-					<strong>You can continue posting this, but you will need to select an agent later to represent you for this sale.</strong> 
-				</div>
+				
+				<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+					"alert_html"=>"You are seeing this message because your profile is not an agent. Only agents can post items for sale directly. 
+								   <br>
+								   <strong>You can continue posting this, but you will need to select an agent later to represent you for this sale.</strong>"))
+				?>
+				
 			</div>
 		</div>
 		
 		<?php endif?>
 		
-		<div id="inputalert"></div>
+		<div class="row">
+			<div id="inputalert"></div>
+		</div>
+		
+		
 		
 		<div class="compulsory">
 			<span class="asterisk2">*</span> fields are compulsory to be filled.

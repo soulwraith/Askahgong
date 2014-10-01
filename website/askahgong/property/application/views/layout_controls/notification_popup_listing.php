@@ -220,8 +220,8 @@
 				<?php break;?>
 				<?php case "agentReviewReply": ?>
 			
-				  
-					<a class="no-underline" oncontextmenu="mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" onclick="close_all_topmenu_popup();return mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" href="agent_comment/view/<?=$notification->resulttext2?>/thread/<?=((($notification->lastcommentpage+1) % 5)*5)?>#<?=$notification->lastcommentid?>" target="_blank">
+				  	
+					<a class="no-underline" oncontextmenu="mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" onclick="close_all_topmenu_popup();return mark_notification_as_read(this,<?=$notification->targetid?>,'<?=$notification->action?>');" href="agent_comment/view/<?=$notification->resulttext2?>/thread/<?=(floor(($notification->lastcommentpage+1) / 5)*5)?>#<?=$notification->lastcommentid?>" target="_blank">
 					
 						<div class="img-container">
 							<img class="img-responsive" src="<?=get_user_profile_pic($notification->userid)?>">

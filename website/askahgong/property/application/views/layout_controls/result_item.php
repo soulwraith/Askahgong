@@ -6,7 +6,7 @@
 			<?php if($item->pending=="1"):?>
 				<a href="pending_item/id/<?=$item->id?>">
 					<div class="pending-overlay">
-							PENDING ITEM
+							<img src="image/pending.png" class="full-width vertical-center">
 					</div>
 				</a>
 			<?php endif?>	

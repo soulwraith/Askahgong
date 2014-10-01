@@ -433,11 +433,13 @@
 		}
 		
 		function get_itemsdata_of_agent_requests_type($type,$userid,$start,$limit,$name="itemsdata",$single_item_id=0){
+			$append2 = "";	
 			if($type=="pending"){
 				$append="=0";
 			}
 			else if ($type=="waitingYourResponse"){
 				$append=">0";
+				$append2 = "and req.rejected=0";
 			}
 			else{
 				$append="<=100";
@@ -452,7 +454,7 @@
 			$sql="call askahgong.getItems(0,".$start.",".$limit.",".$userid.",NULL,1,
 				  (select group_concat(info.id order by info.id desc) from askahgong.item_info info inner join
 				  askahgong.transaction_record trans ON info.id=trans.itemid where info.pending=1
-				   and (select count(req.id) from askahgong.agent_request req where req.fromuserid=trans.userid and req.targetuserid=".$userid." and req.itemid=info.id) ".$append."
+				   and (select count(req.id) from askahgong.agent_request req where req.fromuserid=trans.userid and req.targetuserid=".$userid." and req.itemid=info.id ".$append2.") ".$append."
 				   and trans.removed=0 ".$id_restrict."))";	
 			push_task($name,"json",$sql,array());
 		}
@@ -460,11 +462,13 @@
 		
 		
 		function get_count_of_agent_requests_type($type,$userid,$name="count"){
+			$append2 = "";		
 			if($type=="pending"){
 				$append="=0";
 			}
 			else if ($type=="waitingYourResponse"){
 				$append=">0";
+				$append2 = "and req.rejected=0";
 			}
 			else{
 				$append="<=100";
@@ -474,7 +478,7 @@
 						
 			$sql="select count(info.id) from askahgong.item_info info inner join
 				  askahgong.transaction_record trans ON info.id=trans.itemid where info.pending=1
-				   and (select count(req.id) from askahgong.agent_request req where req.fromuserid=trans.userid and req.targetuserid=".$userid." and req.itemid=info.id) ".$append."
+				   and (select count(req.id) from askahgong.agent_request req where req.fromuserid=trans.userid and req.targetuserid=".$userid." and req.itemid=info.id ". $append2.") ".$append."
 				   and trans.removed=0";	
 			push_task($name,"scalar",$sql,array());
 		}
@@ -484,6 +488,9 @@
 			push_task("","nonquery",$sql,array($itemid));
 		}
 		
-		
+		function agent_decline_customer_request($agent_id,$itemid){
+			$sql = "update askahgong.agent_request set rejected=1 where targetuserid=? and itemid=?";
+			push_task("","nonquery",$sql,array($agent_id,$itemid));
+		}
 		
 }  

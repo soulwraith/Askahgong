@@ -27,9 +27,12 @@
 			
 			<?php if(!$user->completed_profile):?>
 			<div class="col-xs-12">
-				<div class="alert alert-info">
-					Please complete your profile to get additional reputation point.
-				</div>
+				
+				<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+					"alert_html"=>"Please complete your profile to get additional reputation point."))
+				?>
+				
+			
 			</div>
 			<?php endif?>
 			
@@ -118,11 +121,15 @@
 					 <?php if($user->verified_agent==0 && $user->roleid=="5"):?>
 					 <div class="row">
 					 	<div class="col-xs-12">
-							<div class="alert alert-warning">
-								We are verifying your change to agent status. We will let you know when you can starting posting!
-								<br>
-								<a>What is agent verification?</a>
-							</div>
+					 		
+					 		<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
+								"alert_html"=>"We are verifying your change to agent status. We will let you know when you can starting posting!
+												<br>
+												<a>What is agent verification?</a>"))
+							?>
+					 		
+					 		
+							
 						</div>
 					 </div>
 					 <?php elseif($user->verified_agent==-1 && $user->roleid=="5"):?>

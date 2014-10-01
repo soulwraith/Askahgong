@@ -49,6 +49,7 @@
 	   			<a target="_blank" href="item/id/<?=$activity->targetid?>"><?php if(isset($activity->finaltext)) echo $activity->finaltext?></a>
 			</span>
 		</div>
+		<?php $activity->action ="itemtakeover";?>
 		<?php $icontooltip="Item Takeover"?>
 	<?php else:?>
 		<div class="title">New Item</div>

@@ -168,6 +168,32 @@
 						10
 					</div>
 				</div>	
+				
+				<div class="feature-button text-center">
+					<div class="feature-icon icons" style="background-position:-527px -615px;top:10px;">
+					</div>
+					<div class="text">
+						Reputation
+					</div>
+					
+					<div class="indicator icons">
+						11
+					</div>
+				</div>	
+				
+				<div class="feature-button text-center">
+					<div class="feature-icon icons" style="background-position:-515px -572px;width:48px;">
+					</div>
+					<div class="text">
+						Sales Lead
+					</div>
+					
+					<div class="indicator icons">
+						12
+					</div>
+				</div>	
+				
+				
 				</div>
 			</div>	
 			

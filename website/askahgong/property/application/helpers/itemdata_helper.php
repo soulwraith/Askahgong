@@ -47,6 +47,7 @@
 		if (isset($item->original_ownerusername)) $return_item->original_ownerusername=$item->original_ownerusername;	
 		if (isset($item->request_count)) $return_item->request_count=$item->request_count;	
 		if (isset($item->my_agent_request)) $return_item->my_agent_request=$item->my_agent_request;	
+		if (isset($item->agent_reject_request)) $return_item->agent_reject_request=$item->agent_reject_request;	
 		if (isset($item->owner_agent_request)) $return_item->owner_agent_request=$item->owner_agent_request;	
 		if (isset($item->bedroom) || $item->bedroom==0) $return_item->bedroom=$item->bedroom;	
 		if (isset($item->bathroom) || $item->bathroom==0) $return_item->bathroom=$item->bathroom;	
