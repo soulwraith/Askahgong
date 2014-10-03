@@ -73,7 +73,7 @@
                   <th>Agency</th>
                   <th class="text-center">Contact No.</th>
 		          <th class="text-center">Total Posting(s)</th>
-		          <th class="text-center">Comment(s)</th>
+		          <th class="text-center">Review(s)</th>
 		          <th class="text-center">Level</th>
 		          <th class="text-center"></th>
                 </tr>
@@ -110,8 +110,9 @@
               	 	 	</a>
               	 	 </td>
               	 	 <td class="text-center">
-              	 	 	<?php $agent["user"] = $user?>
-              	 	 	<?=$this->load->view("user_controls/comment_total_number",$agent)?>
+              	 	 	
+              	 	 	<?=$this->load->view("user_controls/comment_total_number",Array("userID"=>$user->id,"commend"=>$user->good_comment_count,"report"=>$user->bad_comment_count))?>
+              	 	 	
               	 	 	
               	 	 </td>
               	 	 <td class="text-center transformers user-level">

@@ -76,11 +76,20 @@
 					
 					
 					<div class="details">
-						<strong>Reputation : </strong>
-						<span class="transformers level-text">
-							<span class="text">Level</span> <span class="level"><?=$user->level?></span>
-						</span>
+						<div class="col-xs-7 no-paddingleft no-paddingright">
+							<strong>Reputation : </strong>
+							<span class="transformers level-text">
+								<span class="text">Level</span> <span class="level"><?=$user->level?></span>
+							</span>
+						</div>
 						
+						
+						<div class="comment-parent col-xs-5 no-paddingleft no-paddingright">
+							<?php if(is_verified_agent($user)):?>
+							<?=$this->load->view("user_controls/comment_total_number",Array("userID"=>$user->id,"commend"=>$user->good_comment_count,"report"=>$user->bad_comment_count))?>
+              	 			<?php endif?>
+						</div>
+						<div class="clear"></div>
 					</div>
 					
 					
@@ -97,16 +106,7 @@
 					
 				</div>
 				<div class="clear"></div>
-				
-				<div class="col-xs-12">
-					<div class="row">
-						<div class="comment-parent">
-							<?=$this->load->view("user_controls/comment_total_number")?>
-						</div>
-					</div>
-					
-					
-				</div>
+			
 				
 				
 			</div>
