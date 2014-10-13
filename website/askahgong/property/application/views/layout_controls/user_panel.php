@@ -15,7 +15,7 @@
 						<div class="message-contact icons right" data-toggle="tooltip" title="Message This User" data-placement="auto" onclick="open_circle(true,<?=$user->id?>,'<?=$user->username?>','open',event)">
 							
 						</div>
-						<a href="activity/id/<?=$user->id?>" target="_blank">
+						<a href="user/id/<?=$user->id?>" target="_blank">
 						<div class="see-profile icons left-shadow right" data-toggle="tooltip" title="View Profile" data-placement="auto">
 						</div>
 						</a>

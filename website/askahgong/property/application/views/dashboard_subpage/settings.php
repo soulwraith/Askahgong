@@ -87,7 +87,7 @@
 					
 					<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
 								"alert_html"=>'Allow you to decide when, how or what you want to be notified on, with the settings below. Points to note, 
-										<ul style="list-style:disc">
+										<ul style="list-style:disc;-webkit-padding-start:15px;">
 											<li>
 												Remember to change your <span data-toggle="tooltip" title="Click to customize your working hour."><a href="profile#workingfrom" target="_blank">working hours</a></span> to suit your need. 
 											</li>

@@ -7,7 +7,7 @@
 		<div class="col-xs-12">
 			<div class="title">
 				
-				<?=generate_username_control($user->id,$user->username,false)?>
+				<?=generate_username_control($user->id,$user->username,false,"unknown",999,false,true)?>
 			
 			</div>
 		</div>
@@ -42,12 +42,16 @@
 										<button onclick="accept_agent_propose('.$user->id.')" class="btn btn-red" type="button">Accept</button>
 									</div>';
 						}
+						elseif($user->my_request_rejected>0){
+							$type = "info";
+							$html = 'This agent has rejected your request.';
+						}
 						elseif($user->my_request>0){
 							$type = "success";
 							$html = '<span class="green">Request sent. You will be notified once the agent has accepted your request.</span>';
 						}
 						else{
-							$html = 'Blah blah.<br>
+							$html = 'After this agent accepted your request, he/she will take fully in charge of your property request. However, this property request will be automatically stored inside your <a href="shortlist/view" target="blank">shortlist</a> hence you will be alerted at the first moment this property agent make any changes of your property.<br>
 									<div class="padding-equal grey-bg inline-block margin-top">
 										<button onclick="agent_request('.$user->id.')" class="btn btn-green" type="button">Request</button>
 									</div>';

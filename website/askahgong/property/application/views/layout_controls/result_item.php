@@ -304,7 +304,7 @@
 						<div class="tail-bar hidden-xs">
 							<div class="posttime col-sm-9 col-xs-12">
 								<?php if(!empty($item->original_ownerid)):?>
-									Takenover
+									Took over
 								<?php else:?>
 									Posted
 								<?php endif?>

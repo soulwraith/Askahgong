@@ -125,7 +125,7 @@
 					 		<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
 								"alert_html"=>"We are verifying your change to agent status. We will let you know when you can starting posting!
 												<br>
-												<a>What is agent verification?</a>"))
+												<a href='about/title/website#faq-verification' target='blank'>What is agent verification?</a>"))
 							?>
 					 		
 					 		

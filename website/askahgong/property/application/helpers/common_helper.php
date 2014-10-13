@@ -991,7 +991,7 @@
 	
 	
 	function generate_username_control($userid,$username="",$showing_pic=false,
-										$user_status="unknown",$limit_count=999,$no_link=false,$new_tab=false){
+										$user_status="unknown",$limit_count=999,$no_link=false,$new_tab=false,$possesive=false){
 		$CI =& get_instance();
 		
 		if($userid==0) return "Anonymous";
@@ -1014,6 +1014,7 @@
 		$control["limit_count"]=$limit_count;
 		$control["no_link"]=$no_link;
 		$control["new_tab"]=$new_tab;
+		$control["possesive"]=$possesive;
 		$CI->load->view("user_controls/username_control",$control);
 		
 		

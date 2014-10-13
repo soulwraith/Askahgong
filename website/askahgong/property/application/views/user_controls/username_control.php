@@ -1,8 +1,16 @@
 
 <?php if($showing_userid==get_userid()):?>
-		<a href="activity">You</a>
-	
+	<a href="activity">
+	<?php if($possesive):?>
+		Your
+	<?php else:?>
+		You
+	<?php endif?>
+	</a>
 <?php else:?>
+	<?php if($possesive):?>
+		<?php $showing_username .= "'s"?>
+	<?php endif?>
 	<div user-panel-id="<?=$showing_userid?>" class="inline position-relative">
 		<?php if($showing_pic):?>
 		<img class="img-smallest" src="<?=get_user_profile_pic($showing_userid)?>" style="margin-top:-5px">

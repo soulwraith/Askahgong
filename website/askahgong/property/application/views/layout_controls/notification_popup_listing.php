@@ -207,7 +207,7 @@
 							<br>
 							<span class="text4">"<?=cutofftext($notification->resulttext,30,'...')?>"</span>
 							<br> 
-							<span class="text1">in agent review section.</span>
+							<span class="text1">in Agent Review Section.</span>
 							<br>
 							<span class="text2"><?=ago($notification->dateandtime,true,true)?></span>
 							
@@ -235,7 +235,7 @@
 							<br>
 							<span class="text4">"<?=cutofftext($notification->resulttext,30,'...')?>"</span>
 							<br> 
-							<span class="text1">in agent review section.</span>
+							<span class="text1">in Agent Review Section.</span>
 							<br>
 							<span class="text2"><?=ago($notification->dateandtime,true,true)?></span>
 							

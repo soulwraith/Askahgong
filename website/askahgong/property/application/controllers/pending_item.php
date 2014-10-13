@@ -17,6 +17,7 @@ class Pending_item extends MY_Controller {
 		$this->result_item_model->get_item_full_data($itemid,$userid);
 		
 		$sql = "(SELECT count(id) from askahgong.agent_request where fromuserid='".$userid."' and targetuserid=info.id and itemid='".$itemid."') as my_request,
+				(SELECT count(id) from askahgong.agent_request where fromuserid='".$userid."' and rejected=1 and targetuserid=info.id and itemid='".$itemid."') as my_request_rejected,
 				(SELECT count(id) from askahgong.agent_request where targetuserid='".$userid."' and fromuserid=info.id and itemid='".$itemid."') as agent_request";
 		$sort = "agent_request desc,my_request desc,isonline desc,info.points desc";
 		$this->user_model->get_all_agents("",0,0,20,$userid,$sql,$sort);
@@ -129,6 +130,7 @@ class Pending_item extends MY_Controller {
 		$item_id = $this->input->post("item_id");
 		$userid=get_userid();
 		$sql = "(SELECT count(id) from askahgong.agent_request where fromuserid='".$userid."' and targetuserid=info.id and itemid='".$item_id."') as my_request,
+				(SELECT count(id) from askahgong.agent_request where fromuserid='".$userid."' and rejected=1 and targetuserid=info.id and itemid='".$item_id."') as my_request_rejected,
 				(SELECT count(id) from askahgong.agent_request where targetuserid='".$userid."' and fromuserid=info.id and itemid='".$item_id."') as agent_request";
 		$sort = "agent_request desc,my_request desc,isonline desc,info.points desc";
 		$this->user_model->get_all_agents($keyword,0,$start,20,$userid,$sql,$sort);
@@ -143,6 +145,7 @@ class Pending_item extends MY_Controller {
 		$ownuserid = get_userid();
 		$item_id = $this->input->post("item_id");
 		$sql = "(SELECT count(id) from askahgong.agent_request where fromuserid='".$ownuserid."' and targetuserid='".$userid."' and itemid='".$item_id."') as my_request,
+				(SELECT count(id) from askahgong.agent_request where fromuserid='".$ownuserid."' and targetuserid='".$userid."' and rejected=1 and itemid='".$item_id."') as my_request_rejected,
 				(SELECT count(id) from askahgong.agent_request where targetuserid='".$ownuserid."' and fromuserid='".$userid."' and itemid='".$item_id."') as agent_request";
 		$this->user_model->get_user_by_userid($ownuserid,$userid,$sql);
 		commitTasks();

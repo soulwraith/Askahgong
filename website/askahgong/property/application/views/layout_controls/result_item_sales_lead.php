@@ -38,7 +38,7 @@
 							 	<?php else:?>
 							 		<span class="text4">
 							 		     <span class="label label-green" style="font-size:0.85em;"><i class="icon-agent vertical-middle" style="font-size:15px;"></i> Agents (<?=$item->request_count?>/10)</span>
-							 		     propose to represent for this property.
+							 		     proposed to represent for this property.
 							 		</span>	
 							 		
 							 	<?php endif?>

@@ -35,7 +35,11 @@
 				<?php endif?>
 			</div>
 			
-			<div class="green request-sent <?php if(!$agent->my_request>0) echo "hidden-object"?>">
+			<div class="<?php if(!$agent->my_request_rejected>0) echo "hidden-object"?>">
+				<span class="label label-yellow">Request Rejected</span>
+			</div>
+			
+			<div class="green request-sent <?php if(!$agent->my_request>0 || $agent->my_request_rejected!="0") echo "hidden-object"?>">
 				<span class="label label-green">Request Sent</span>
 			</div>
 			

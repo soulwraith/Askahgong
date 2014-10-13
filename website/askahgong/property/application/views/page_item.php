@@ -814,6 +814,7 @@ var PAGE_ITEM_onpage,
 	
 	PAGE_ITEM_id="<?=$item->id?>";
 	PAGE_ITEM_userid="<?=$item->userid?>";
+	PAGE_ITEM_original_ownerid="<?=$item->original_ownerid?>";
 	PAGE_ITEM_type="<?=$item->type?>";
 	PAGE_ITEM_latitude="<?=$item->latitude?>";
 	PAGE_ITEM_longitude="<?=$item->longitude?>";

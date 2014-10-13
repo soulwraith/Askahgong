@@ -16,7 +16,7 @@
 				
 				<i class="icons <?php if($thread->point>0) echo "commend"; else echo "report";?>"></i> <?=$thread->title?> 
 				<?php if($agent_id==get_userid()):?>
-				<em class="<?php if($thread->point>0) echo "blue"; else echo "red";?>"><?php if($thread->point>0) echo "+";?><?=$thread->point?> reputation points</em>
+				<em class="<?php if($thread->point>0) echo "blue"; else echo "red";?>"><?php if($thread->point>0) echo "+";?><?=$thread->point?> &nbsp;rep. points</em>
 				<?php endif?>
 				
 				<br>

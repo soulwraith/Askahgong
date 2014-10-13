@@ -42,15 +42,15 @@
 
 <?php case "newItem": ?>
 	<?php if(isset($activity->original_userid)):?>
-		<div class="title">Item Takeover</div>
+		<div class="title">Item Take-over</div>
 		<div class="content">
 			<span>
-				<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> takenover <?=generate_username_control($activity->original_userid,$activity->original_username)?> item:<br>
+				<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> taken over <?=generate_username_control($activity->original_userid,$activity->original_username,false,"unknown",999,false,false,true)?> item:<br>
 	   			<a target="_blank" href="item/id/<?=$activity->targetid?>"><?php if(isset($activity->finaltext)) echo $activity->finaltext?></a>
 			</span>
 		</div>
 		<?php $activity->action ="itemtakeover";?>
-		<?php $icontooltip="Item Takeover"?>
+		<?php $icontooltip="Item Take-over"?>
 	<?php else:?>
 		<div class="title">New Item</div>
 		<div class="content">
@@ -158,7 +158,7 @@
    			<?=generate_username_control($activity->userid,$activity->username)?> <?=changeifme('has','have',$activity->userid)?> reviewed <?=generate_username_control($activity->agent_id,$activity->agent_name)?> in <a href="<?=$activity->url?>">agent review section</a>.
    		</span>	
    	</div>
-   	<?php $icontooltip="Begin Your Journey"?>
+   	<?php $icontooltip="Agent Review"?>
 <?php break;?>
 <?php endswitch;?>
 	 <div class="time">

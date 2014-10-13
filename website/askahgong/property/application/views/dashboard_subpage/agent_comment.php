@@ -20,7 +20,7 @@
 						 <br>
 						 Normally,<strong> agents with high reputation will get more requests from users without agent representative.</strong>
 						<br>
-						<a>How can I improve my reputation score?</a>"
+						<a href='about/title/website#faq-reputation' target='blank'>How can I improve my reputation score?</a>"
 		?>
 		 
 	<?php else:?>

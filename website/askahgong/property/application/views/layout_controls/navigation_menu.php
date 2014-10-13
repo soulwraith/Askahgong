@@ -70,11 +70,11 @@
 		push_submenu($menu_list,$menu,"Feedback","discussion/listing/1");
 		push_submenu($menu_list,$menu,"New Topic","discussion/newtopic");
 	
-		if((isset($userlogin) && ($userlogin)==true)){
-			$menu = push_menu($menu_list,"New Post","posting/newpost","newpost.png","inputpost","newpost-icon");
-			push_submenu($menu_list,$menu,"Selling","posting/newpost?action=0");
-			push_submenu($menu_list,$menu,"Buying","posting/newpost?action=1");
-		}
+		
+		$menu = push_menu($menu_list,"New Post","posting/newpost","newpost.png","inputpost","newpost-icon");
+		push_submenu($menu_list,$menu,"Selling","posting/newpost?action=0");
+		push_submenu($menu_list,$menu,"Buying","posting/newpost?action=1");
+		
 		
 		$menu = push_menu($menu_list,"About Us","about","about.png","about","about-icon");
 		push_submenu($menu_list,$menu,"Introduction","about/title/introduction");

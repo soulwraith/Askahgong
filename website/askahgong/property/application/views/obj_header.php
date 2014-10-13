@@ -59,7 +59,7 @@
 
 
 <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" /> 
-</head><link type="text/css" href="css/all_7_1.css" rel="stylesheet" media="screen"> 
+</head><link type="text/css" href="css/all_7_2.css" rel="stylesheet" media="screen"> 
 
   	
 
@@ -138,7 +138,14 @@
 		  		
 		  		<div class="notification-menu hidden-object">
 		  			<?php $arr=Array("discussion-reply"=>"Topic Reply","new-item"=>"Item Alert","agent-request"=>"Agent Request","agent-review"=>"Agent Review")?>
-		  			<?php $arr_url=Array("notification#showall","notification#showitem","","")?>
+		  			<?php $arr_url=Array("notification#showall","notification#showitem")?>
+		  			
+		  			<?php if($isAgent):?>
+		  				<?php array_push($arr_url,"pending_item/listing","agent_comment/view")?>
+		  			<?php else:?>
+		  				<?php array_push($arr_url,"posting/view","")?>
+		  			<?php endif?>
+		  			
 		  			<?php $i=0;?>
 		  			<?php foreach($arr as $x=>$x_value):?>
 		  			<div class="item switching <?=$x?>" type="<?=$x?>">
