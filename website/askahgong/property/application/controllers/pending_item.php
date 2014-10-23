@@ -214,8 +214,15 @@ class Pending_item extends MY_Controller {
 			return;
 		}
 		
-		if(!empty(handle_item_data($data["item"])->original_ownerid)){
+		$item_data = handle_item_data($data["item"]);
+		
+		if(!empty($item_data->original_ownerid)){
 			echo "ALREADY_HAD_AGENT";
+			return;
+		}
+		
+		if($item_data->pending!=1){
+			echo "NOT_IN_PENDING";
 			return;
 		}
 		
@@ -251,6 +258,13 @@ class Pending_item extends MY_Controller {
 	function agent_reject_customer(){
 		$userid = get_userid();
 		$item_id = $this->input->post("item_id");
+		$this->result_item_model->get_item_full_data($item_id,$userid);
+		commitTasks();
+		$item_data = handle_item_data($data["item"]);
+		if($item_data->pending!=1){
+			echo "NOT_IN_PENDING";
+			return;
+		}
 		$this->result_item_model->agent_decline_customer_request($userid,$item_id);
 		commitTasks();
 	}

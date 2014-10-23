@@ -167,10 +167,14 @@
 						<div class="content-container">
 							<span class="text1"><?=generate_username_control($notification->userid,$notification->username,true,$notification->isonline,20,true)?></span>
 							<br>
-							<?php if(!is_verified_agent($user)):?>	
+							<?php if($user->id == $notification->item->original_ownerid):?>	
 								is now your representative for					
 							<?php else:?>
+								<?php if($notification->resulttext == $user->id):?>
+								is now represented by you
+								<?php else:?>
 								has accepted you to be his/her agent
+								<?php endif?>
 							<?php endif?>
 							<br>
 							<span class="text1"><?=$notification->item->actiontext?> <?=$notification->item->name?> @ <?=$notification->item->areanameshort?></span>

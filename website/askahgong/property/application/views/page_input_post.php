@@ -100,7 +100,7 @@
 					      <label for="itemname"><span class="hidden-in-sell">Requested </span>Unit Type</label> 
 					      <div class="styled-select"> 
 					      							
-							<select id="itemname" name="itemname" class="form-control buy sell main-control">
+							<select onchange="unit_type_changed(this)" id="itemname" name="itemname" class="form-control buy sell main-control">
 								<option class="hidden-object" value="" selected>Select Unit Type</option>
 								<?php foreach ($propertylist as $prop):?>
 									<?php if($prop=="House"):?>

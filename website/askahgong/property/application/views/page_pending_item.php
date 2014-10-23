@@ -4,7 +4,7 @@
 <?php 
 	$previous = array(
 		 'My Posting' => 'posting/view',
-		 $item->actiontext." ".$item->paddingnamewithareatoshow => "item/id/".$item->id
+		 $item->actiontext." ".$item->paddingnamewithareatoshow => "posting/edit/".$item->id
 		);
 	$this->load->view("user_controls/breadcrumbs",Array("previous"=>$previous,"current"=>'Pick an agent'))?>
 
