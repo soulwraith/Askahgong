@@ -61,7 +61,7 @@ class Pending_item extends MY_Controller {
 		array_push($tasksCompletedCallBack,function(){
 			GLOBAL $data;
 			
-			if(!is_verified_agent($data["user"])){
+			if(!is_legal_agent($data["user"])){
 				redirect("redirect/cannot_access");
 			}
 			
@@ -201,11 +201,11 @@ class Pending_item extends MY_Controller {
 		
 		commitTasks();
 		GLOBAL $data;
-		if(is_verified_agent($data["user"])){
+		if(is_legal_agent($data["user"])){
 			$agent_id = $userid;
 			$customer_id = $targetuserid;
 		}
-		else if(is_verified_agent($data["target"])){
+		else if(is_legal_agent($data["target"])){
 			$agent_id = $targetuserid;
 			$customer_id = $userid;
 		}

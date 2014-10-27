@@ -218,7 +218,7 @@
 					</div>	
 					<div class="col-xs-5">
 						<div>
-							<span style="font-size:20px;font-weight:bold;">Looking for a dream home online</span>, but hate to run through endless online searches? Have a hot property to sell, but hate to fill in complicated online forms? Find out how you can use our SMS service to do that and start putting those requests in @ <strong style='color:#fd9c28'>6017-8761590</strong>
+							<span style="font-size:20px;font-weight:bold;">Looking for a dream home online</span>, but hate to run through endless online searches? Have a hot property to sell, but hate to fill in complicated online forms? Find out how you can use our SMS service to do that and start putting those requests in @ <strong style='color:#fd9c28;font-size: 20px;font-weight: normal;vertical-align: text-top;'>6017-8761590</strong>
 						</div>	
 						<div class="margin-top">
 							 <a onclick="focus_question('faq_post')" href="javascript:void(0)">Scroll below</a> for instructions and screenshots.

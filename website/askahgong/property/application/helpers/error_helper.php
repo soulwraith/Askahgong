@@ -25,9 +25,6 @@
 			}
 		}
 
-				
-		
-		
 		log_message('error', "\n".$ex->getMessage());
 		
     }

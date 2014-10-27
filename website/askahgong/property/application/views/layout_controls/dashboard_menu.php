@@ -36,7 +36,7 @@
 			</div>
 		</a>
 		
-		<?php if($isAgent):?>
+		<?php if($isLegalAgent):?>
 		<a href="pending_item/listing">
 			<div class="menu-item-container <?php if($dashboard_page=="pending_item") echo "selected"?>">
 				<div class="menu-image-container"><div class="menu-image icons sales-lead"></div></div>

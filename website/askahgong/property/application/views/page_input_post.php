@@ -47,7 +47,7 @@
 			<div class="hidden-in-buy">
 				
 				<?=$this->load->view("layout_controls/alert",Array("alert_type"=>"info",
-					"alert_html"=>"You are seeing this message because your profile is not an agent. Only agents can post items for sale directly. 
+					"alert_html"=>"You are seeing this message because your profile is not an agent. Only agents can post items for sale directly. Change your role <a href='profile'>here</a> if you are an agent. 
 								   <br>
 								   <strong>You can continue posting this, but you will need to select an agent later to represent you for this sale.</strong><br>
 								   <a href='about/title/website#faq-choose-agent' target='blank'>Why do I need a property agent?</a>"))

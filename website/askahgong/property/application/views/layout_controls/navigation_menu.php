@@ -37,7 +37,7 @@
 				push_submenu($menu_list,$menu,"My Review","agent_comment/view","profile-icon");
 			}
 			push_submenu($menu_list,$menu,"My Profile","profile","profile-icon");
-			if($isAgent){
+			if($isLegalAgent){
 				push_submenu($menu_list,$menu,"My Sales Lead","pending_item/listing","profile-icon");
 			}
 			push_submenu($menu_list,$menu,"My Posting","posting/view","mypostings-icon");
@@ -80,7 +80,7 @@
 		push_submenu($menu_list,$menu,"Introduction","about/title/introduction");
 		push_submenu($menu_list,$menu,"Features","about/title/features");
 		push_submenu($menu_list,$menu,"Website","about/title/website");
-		push_submenu($menu_list,$menu,"SMS/Whatsapp","about/title/sms");
+		push_submenu($menu_list,$menu,"SMS","about/title/sms");
 		
 		if((isset($userlogin) && ($userlogin)==true)){
 			$menu = push_menu($menu_list,"Logout","user/submit_logout","logout.png","logout","logout-icon");	

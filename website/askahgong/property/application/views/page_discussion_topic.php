@@ -90,7 +90,7 @@
 	              				<?=$topic->postscount?>
 		              				
 		              			</span>
-		              			<img style="position:absolute;top:22px;left:50%;margin-left:-7px;" src="image/post_count_tail.png">
+		              			<img style="position:absolute;top:20px;left:50%;margin-left:-7px;" src="image/post_count_tail.png">
 	              			</div>
 	              			
 	              		</td>

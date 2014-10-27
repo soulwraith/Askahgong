@@ -46,7 +46,7 @@ class Item extends MY_Controller {
 			if($data['item']->pending=="1" && $data['item']->userid==$userid){
 				redirect("pending_item/id/".$data["item"]->id);
 			}
-			else if($data['item']->pending=="1" && !is_verified_agent($data["myuser"])){
+			else if($data['item']->pending=="1" && !is_legal_agent($data["myuser"])){
 				redirect("redirect/cannot_access");
 			}
 			

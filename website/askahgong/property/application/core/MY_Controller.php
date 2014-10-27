@@ -71,6 +71,13 @@ class MY_Controller extends CI_Controller {
 			$data["isAgent"] = false;
 		}
 		
+		if(isset($data["myDetails"]) && is_legal_agent($data["myDetails"])){
+			$data["isLegalAgent"] = true;
+		}
+		else{
+			$data["isLegalAgent"] = false;
+		}
+		
 		if(isset($data["role_level"]) && $data["role_level"]<=2) $data["admin"]=true;
 		else $data["admin"]=false;
 

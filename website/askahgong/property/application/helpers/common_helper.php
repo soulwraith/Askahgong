@@ -57,6 +57,16 @@
 		}
 	}
 	
+	
+	function is_legal_agent($user){
+		if(($user->role=="Agent") && ($user->verified_agent=="1")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	function get_start_pagination_by_row_number($rownumber,$limit){
 		$start=0;	
 		if($rownumber!=""){

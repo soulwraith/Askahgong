@@ -18,7 +18,7 @@
 	<?php if($user->id==get_userid()):?>
 		<?php $html = "Your reputation score shows how much you have contributed to building the Ask Ah Gong community, and making it easier for buyers or sellers to complete the transactions through your service.
 						 <br>
-						 Normally,<strong> agents with high reputation will get more requests from users without agent representative.</strong>
+						 Normally,<strong> licensed agents with high reputation will get more requests from users without agent representative.</strong>
 						<br>
 						<a href='about/title/website#faq-reputation' target='blank'>How can I improve my reputation score?</a>"
 		?>
