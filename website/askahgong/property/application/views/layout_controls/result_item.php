@@ -4,11 +4,18 @@
 		<div class="result-item"  itemid="<?=$item->id?>">
 			
 			<?php if($item->pending=="1"):?>
-				<a href="pending_item/id/<?=$item->id?>">
+				<a target="blank" href="pending_item/id/<?=$item->id?>">
 					<div class="pending-overlay">
 							<img src="image/pending.png" class="full-width vertical-center">
 					</div>
 				</a>
+			<?php elseif($item->removed=="1"):?>
+				<a target="blank" href="<?=$item->url?>">
+					<div class="pending-overlay">
+							<img src="image/deleted.png" class="full-width vertical-center">
+					</div>
+				</a>
+			
 			<?php endif?>	
 			
 			

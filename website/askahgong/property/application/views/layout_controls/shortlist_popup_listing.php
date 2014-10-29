@@ -11,11 +11,15 @@
 						if($item->modified_type=="editItem"){
 							$modified_type="edit";
 						}
-						else if($item->modified_type=="deleteItem"){
-							$modified_type="delete";
-						}
-						
 					}
+				}
+				
+				
+				if(isset($item->modified_type)){
+					if($item->modified_type=="deleteItem"){
+						$modified_type="delete";
+					}
+						
 				}
 				
 				
