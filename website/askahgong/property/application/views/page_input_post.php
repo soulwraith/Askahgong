@@ -171,7 +171,7 @@
 						<div class="col-xs-6">
 							<div class="form-group">
 						      <label for="bedroom"><span class="hidden-in-sell">Requested </span>Bedroom</label> 
-						      <input type="text" id="bedroom" name="bedroom" autocomplete="off" class="form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
+						      <input onkeydown="return numericOnlyEvent(event);" type="text" id="bedroom" name="bedroom" autocomplete="off" class="form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
 						    </div>
 						</div>
 						<div class="col-xs-6">

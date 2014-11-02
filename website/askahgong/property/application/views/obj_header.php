@@ -59,7 +59,7 @@
 
 
 <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" /> 
-</head><link type="text/css" href="css/all_7_7.css" rel="stylesheet" media="screen"> 
+</head><link type="text/css" href="css/all_7_8.css" rel="stylesheet" media="screen"> 
 
   	
 
