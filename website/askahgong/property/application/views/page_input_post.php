@@ -171,7 +171,7 @@
 						<div class="col-xs-6">
 							<div class="form-group">
 						      <label for="bedroom"><span class="hidden-in-sell">Requested </span>Bedroom</label> 
-						      <input type="text" id="bedroom" name="bedroom" autocomplete="off" class="number-only form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
+						      <input type="text" id="bedroom" name="bedroom" autocomplete="off" class="form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
 						    </div>
 						</div>
 						<div class="col-xs-6">
@@ -361,11 +361,13 @@
 						<?php if(isset($item->id)){
 							$data['filearr']=$item->filearr;
 							$data['itemid']=$item->id;
+							$data['first_file']=$item->first_file;
 						}?>
 						<?= $this->load->view("user_controls/file_uploader",$data)?>
 						
 					</div>
 					
+					<input type="hidden" name="first_file" value="<?php if(isset($item)) echo $item->first_file;?>">
 					
 				</div>
 				<div class="clear visible-xs" style="padding-top:15px;"></div>

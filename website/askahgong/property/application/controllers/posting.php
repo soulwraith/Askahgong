@@ -185,8 +185,9 @@ class Posting extends MY_Controller {
 	
 	public function handle_file_api(){
 		$item_id = $this->input->post("item_id");
-		handle_file($item_id);
-		
+		$first_file = $this->input->post("first_file");
+		$firstImage = handle_file($item_id,$first_file);
+		$this->result_item_model->update_first_image($item_id,$firstImage);
 		$this->result_item_model->get_userid_by_itemid($item_id);
 		$this->user_model->get_user_by_userid(get_userid(),"(%task0,userid%)");
 		$this->result_item_model->check_item_is_pending($item_id);	

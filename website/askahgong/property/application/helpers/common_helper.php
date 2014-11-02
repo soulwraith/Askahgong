@@ -237,9 +237,11 @@
 			$item->land_area_height=$CI->input->post('land_area_height');
 			$item->land_area_height=str_replace(",","",$item->land_area_height);
 			$item->feature=$CI->input->post('feature');
+			$item->first_file="";
 			$item->areaname=$CI->input->post('area');
 			$item->areaidlevelstring=$CI->input->post('areaidlvl');
 			$areacoordinates=$CI->input->post('areacoordinates');
+			
 			if(isset($areacoordinates) && $areacoordinates!=false){
 				$areacoor_arr=explode(",",$areacoordinates);
 				$latitudearr=Array();
@@ -408,6 +410,11 @@
 			}
 			
 			
+			$first_file=$CI->input->post('first_file');	
+			if($first_file!=""){
+				$post .= " first_file(%1) " . $first_file;
+				$post .= "(%3)";
+			}
 
 
 			if($CI->input->post('coordinates')) {
@@ -601,17 +608,17 @@
 		return $outputFile;
 	}
 	
-	function handle_file($itemid){
+	function handle_file($itemid,$pickedFirstImage){
 		if(!is_dir('photo/'.$itemid)){
 			mkdir('photo/'.$itemid, 0771);
 		} 
+		$resultFirstImageMapping = "";
 		$CI =& get_instance();
 		if($CI->input->post('real_file_name')){
 			$filename=$CI->input->post('real_file_name');	
 			$filenamearr=explode(",",$filename);
 			foreach($filenamearr as $file){
 				if($file!=""){
-					
 					$filetype=explode(".",$file);
 					if($filetype[1]=="jpeg") $filetype[1]="jpg";	
 					while (true) {
@@ -619,12 +626,15 @@
 					     $newfilename =str_replace(".","t",$newfilename). '.'.$filetype[1];
 						  if (!file_exists("photo/".$itemid."/" . $newfilename)) break;
 					}
+					if(strtolower($file)==strtolower($pickedFirstImage)){
+						$resultFirstImageMapping = $newfilename;
+					}
 					copy("upload/" .$file,"photo/".$itemid."/" . $newfilename);			
-				
+					
 				}			
 			
 			}
-
+			return $resultFirstImageMapping;
 			
 			
 		} 

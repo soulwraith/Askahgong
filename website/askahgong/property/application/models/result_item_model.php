@@ -272,6 +272,17 @@
 			}
 	    	
 	    }
+		
+		function update_first_image($itemid,$img){
+	    	$sql="UPDATE 
+	 				askahgong.item_info 
+	 			  SET 
+	 			  	first_file=? 
+	 			  WHERE 
+	 			  	id='".$itemid."'";
+	 		push_task("","nonquery",$sql,array($img));
+	    	
+	    }
 	 
 	 	function delete_post($itemid,$userid){
 	 		$sql="UPDATE 

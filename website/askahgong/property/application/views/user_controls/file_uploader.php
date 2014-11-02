@@ -66,6 +66,7 @@ JQUERY_CALLBACK.push(function(){
 		$('#' + file.id).find(".thumb-img-container").hide();
 		$('#' + file.id).find(".thumb-img-container").removeClass("thumb-loading");
 		$('#' + file.id).find("a").removeClass("disabled");
+		$('#' + file.id).attr("type","saved");
 		edit_input();
 	});
 
@@ -78,7 +79,7 @@ JQUERY_CALLBACK.push(function(){
 	<?php if(isset($buttonhtml)):?>
 		<?= $buttonhtml?>
 	<?php else:?>
-		<a style="line-height:20px;" id="pickfiles" class="btn btn-amber btn-lg btn-block">Add Photo<br><small style="font-size:0.6em;">You may add multiple photos</small></a>
+		<a style="line-height:20px;" id="pickfiles" class="btn btn-amber btn-lg btn-block">Add Photo<br><small style="font-size:0.6em;">You may add multiple photos and select the display photo by clicking on it</small></a>
 	<?php endif?>
 	
 	<div id="filelist" style="width:105%"></div>
@@ -95,9 +96,15 @@ JQUERY_CALLBACK.push(function(){
 		<?php foreach($filearr as $file):?>
 
 			<?php if (strpos($file, 'ahgongpresetfile') == false):?>
-	
-			$('#filelist').append(generate_thumbnail(unique,"saved","<?=$file?>"));
-
+			var $thumb = $(generate_thumbnail(unique,"saved","<?=$file?>"));
+			<?php $temp = explode("/",$file)?>
+			<?php if(strtolower($first_file)==end($temp)):?>
+				$thumb.addClass("selected");
+			<?php endif?>
+			
+			$('#filelist').append($thumb);
+			
+			
 			unique++;
 			<?php endif?>
 		<?php endforeach?>

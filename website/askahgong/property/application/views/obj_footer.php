@@ -37,5 +37,5 @@
         
   		
       </div>
-   </footer><script type="text/javascript" src="javascript/all_7_6.js"></script>
+   </footer><script type="text/javascript" src="javascript/all_7_7.js"></script>
 

@@ -51,6 +51,7 @@
 		if (isset($item->owner_agent_request)) $return_item->owner_agent_request=$item->owner_agent_request;	
 		if (isset($item->bedroom) || $item->bedroom==0) $return_item->bedroom=$item->bedroom;	
 		if (isset($item->bathroom) || $item->bathroom==0) $return_item->bathroom=$item->bathroom;	
+		if (isset($item->first_file)) $return_item->first_file=$item->first_file;	
 		
 		if (isset($item->name)) {
 			if(strtolower($item->name)=="semi detached house"){
@@ -108,6 +109,14 @@
 				}	
 				
 			}
+			
+			for($x=0;$x<=count($return_item->filearr)-1;$x++){
+				if($return_item->filearr[$x]==strtolower($return_item->first_file)){
+					moveElement($return_item->filearr,$x,0);
+				}	
+				
+			}
+			
 			
 			$return_item->firstFile ="";
 			if (count($return_item->filearr)>0){
