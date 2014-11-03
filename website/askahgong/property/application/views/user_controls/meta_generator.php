@@ -27,7 +27,8 @@
     $title;
 	$keywords;
 	$description;
-	
+	$og_image;
+	$og_description;
 	
 	if(contain_string($attrs,"404")){
 		$title = "Page Not Found";
@@ -161,13 +162,19 @@
 		}
 		$title = $item->actiontext." ".$item->paddingnamewithareatoshow;
 		if($user->role=="Agent"){
-		$description = $user->username."'s posting: ".$item->actiontext." ".lcfirst($item->paddingnamewithareatoshow)." with ".$pricebudget." ".str_replace(" ","",$item->pricetoshow).". Post owner's details: ".$user->username.", ".lcfirst($user->role).", from '".$user->agency."'";
+		$description = $user->username."'s posting: ".$item->actiontext." ".lcfirst($item->paddingnamewithareatoshow)." with ".$pricebudget." ".str_replace(" ","",$item->pricetoshow).". Post owner's details: ".$user->username.", ".ucfirst(lcfirst($user->role)).", from '".$user->agency."'";
 		}
 		else {
-		$description = $user->username."'s posting: ".$item->actiontext." ".lcfirst($item->paddingnamewithareatoshow)." with ".$pricebudget." ".str_replace(" ","",$item->pricetoshow).". Post owner's details: ".$user->username.", ".lcfirst($user->role);
-			
-			}	
-		
+		$description = $user->username."'s posting: ".$item->actiontext." ".lcfirst($item->paddingnamewithareatoshow)." with ".$pricebudget." ".str_replace(" ","",$item->pricetoshow).". Post owner's details: ".$user->username.", ".ucfirst(lcfirst($user->role));
+		}	
+		$og_image = $item->firstFile;
+		$og_description = $item->actiontext . " ".ucfirst(lcfirst($item->nametoshow)).", ".
+						  $item->areanametoshow.", ".
+						  $pricebudget." ".str_replace(" ","",$item->pricetoshow).", ".
+						  $user->username." (".ucfirst(lcfirst($user->role)).")";
+		if(strtolower($user->role)=="agent"){
+			$og_description .= ", ".$user->agency;
+		}
 	}
 	
 	else if(starts_with(uri_string(),"posting/newpost") || starts_with(uri_string(),"posting/edit")){
@@ -240,4 +247,13 @@
 <meta name="description" content="<?=$description?>">
 <?php endif?>
 
+<meta property="og:title" content="<?=$title?> | Askahgong">
+<meta property="og:site_name" content="Askahgong Property">
+<meta property="og:url" content="<?=current_url()?>">
+<?php if(isset($og_image)):?>
+<meta property="og:image" content="<?=base_url($og_image)?>">
+<?php endif?>
+<?php if(isset($og_description)):?>
+<meta property="og:description" content="<?=$og_description?>">
+<?php endif?>
 

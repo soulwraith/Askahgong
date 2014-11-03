@@ -49,10 +49,19 @@
 							<strong>Role : </strong>
 						</div>
 						<div class="left">
-							 &nbsp;<?=$user->role?>
+							 &nbsp;<?=$user->role?> 
+							
 						</div>
 					</div>
-					
+					<div class="col-xs-12">
+						<strong>Phone Number : </strong>
+						<?php if($user->canseephone):?>
+							+<?=$user->phone?>
+						<?php else:?>
+							<em>Hidden</em>
+						<?php endif?>
+						<div class="clear"></div>
+					</div>
 					
 					<div class="col-xs-12">
 						<strong>User Message : </strong>
@@ -133,6 +142,9 @@
 				</div>
 				<div>
 					<?=$user->role?>
+					 <?php if($user->canseephone):?>
+						(+<?=$user->phone?>)
+					<?php endif?>
 				</div>
 				
 				
@@ -205,7 +217,7 @@
 						<?php if(!$user->canseephone):?>
 							<em>Phone number is hidden</em>
 						<?php else:?>
-							<?=$user->phone?>
+							+<?=$user->phone?>
 						<?php endif?>	
 					</div>
 					
@@ -267,7 +279,7 @@
 					<?php if(!$user->canseephone):?>
 						<em>Phone number is hidden</em>
 					<?php else:?>
-						<?=$user->phone?>
+						+<?=$user->phone?>
 					<?php endif?>	
 				</div>
 				

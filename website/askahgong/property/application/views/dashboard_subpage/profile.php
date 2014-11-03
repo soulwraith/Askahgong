@@ -196,20 +196,20 @@
 					 <div class="form-group">
 					    <label for="phonevisibility" class="col-md-6 col-sm-12 control-label">Reveal Phone Number
 					    	<a href="about/title/website#faq-contact_method" target="_blank">
-				      			<div class="icons question-hover" data-toggle="tooltip" data-html="true" title="To whom you want to show your contact number? Click for more details." data-placement="top">
+				      			<div class="icons question-hover" data-toggle="tooltip" data-html="true" title="To whom you want to show your contact number? It is compulsory for agents to reveal their phone number. Click for more details." data-placement="top">
 				      			</div>
 				      		</a>
 					    </label>
 					    <div class="col-md-6 col-sm-12">
 					      <div class="styled-select"> 
 						      <select name="phonevisibility" class="form-control" id="phonevisibility">
-								<option value="0" <?php if($user->phone_visibility==0) echo "selected"?>>
+								<option value="0" <?php if($user->phone_visibility==0) echo "selected picked='true'"?>>
 									To Everyone
 								</option>
-								<option value="1" <?php if($user->phone_visibility==1) echo "selected"?>>
+								<option value="1" <?php if($user->phone_visibility==1) echo "selected picked='true'"?>>
 									To My Contact(s) Only
 								</option>
-								<option value="2" <?php if($user->phone_visibility==2) echo "selected"?>>
+								<option value="2" <?php if($user->phone_visibility==2) echo "selected picked='true'"?>>
 									Nobody
 								</option>
 							  </select>

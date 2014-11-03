@@ -309,13 +309,20 @@
 						</a>
 						
 						<div class="tail-bar hidden-xs">
-							<div class="posttime col-sm-9 col-xs-12">
+							<div class="posttime col-sm-9 col-xs-12 overflow-ellipsis">
 								<?php if(!empty($item->original_ownerid)):?>
 									Took over
 								<?php else:?>
 									Posted
 								<?php endif?>
-								 <?=ago($item-> posttime)?> by <?=generate_username_control($item->userid,$item->username,true,$item->isonline,20)?>
+								
+								<?php
+									$append_username=""; 
+									if($item->canseephone){
+										$append_username = "(+".$item->phone.")";
+									}
+								?>
+								<?=ago($item-> posttime)?> by <?=generate_username_control($item->userid,$item->username,true,$item->isonline,20,false,false,false,$append_username)?>
 								
 							</div>
 							<div class="col-sm-3 col-xs-12 buttons" style="padding-right:0px;padding-bottom:5px;">

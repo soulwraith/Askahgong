@@ -7,7 +7,9 @@
 						<div class="vertical-bottom icons inline-block user-status big user-state <?php if($user->isonline) echo "online"; else echo "offline";?>" userid="<?=$user->id?>" style="margin-right:0px">
 						</div>
 						<?=$user->username?>
-						 
+						<?php if($user->canseephone):?>
+							(+<?=$user->phone?>)
+						<?php endif?>
 					</span>
 				</div>
 				<div class="col-xs-5" style="padding:0px;">

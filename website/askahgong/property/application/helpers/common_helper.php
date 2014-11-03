@@ -1011,7 +1011,7 @@
 	
 	
 	function generate_username_control($userid,$username="",$showing_pic=false,
-										$user_status="unknown",$limit_count=999,$no_link=false,$new_tab=false,$possesive=false){
+										$user_status="unknown",$limit_count=999,$no_link=false,$new_tab=false,$possesive=false,$append=""){
 		$CI =& get_instance();
 		
 		if($userid==0) return "Anonymous";
@@ -1020,6 +1020,7 @@
 		$control["showing_userid"]=$userid;
 		$control["showing_username"]=$username;
 		$control["showing_pic"]=$showing_pic;
+		$control["append"]=$append;
 		
 		if($user_status=="unknown"){
 			$control["user_status"]="unknown";

@@ -18,11 +18,18 @@
 		<?php if($no_link):?>
 			<?=cutofftext($showing_username,$limit_count,"...")?>
 		<?php else:?>
-			<a <?php if($new_tab) echo "target='_blank'"?> href="user/id/<?=$showing_userid?>"><?=cutofftext($showing_username,$limit_count,"...")?></a>
+			<a <?php if($new_tab) echo "target='_blank'"?> href="user/id/<?=$showing_userid?>"><?=cutofftext($showing_username,$limit_count,"...")?>
 		<?php endif?>
 		
 		<?php if($user_status!="unknown"):?>
 		<div class="inline-block icons vertical-bottom user-state user-status <?=$user_status?>" userid="<?=$showing_userid?>"></div>
+		<?php endif?>
+		
+		<?php if($append!=""):?>
+			<?=$append?>
+		<?php endif?>
+		<?php if(!$no_link):?>
+			</a>
 		<?php endif?>
 	</div>	
 
