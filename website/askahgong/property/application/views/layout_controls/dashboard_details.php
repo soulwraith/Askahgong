@@ -153,7 +153,7 @@
 					<strong>Agency</strong>
 				</div>
 				<div>
-					<?=$user->agency?>
+					<?=is_empty_default($user->agency)?>
 				</div>
 				<?php endif?>
 				

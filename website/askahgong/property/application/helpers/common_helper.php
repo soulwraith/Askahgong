@@ -57,6 +57,15 @@
 		}
 	}
 	
+	function is_licensed_agent($user){
+		if(($user->role=="Agent") && ($user->verified_agent=="1") && ($user->agency!="")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	
 	function is_legal_agent($user){
 		if(($user->role=="Agent") && ($user->verified_agent=="1")){
