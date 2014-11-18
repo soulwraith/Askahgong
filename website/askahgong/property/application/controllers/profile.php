@@ -135,7 +135,23 @@ class Profile extends MY_Controller {
 		$userid=get_userid();
 		$filename=$this->input->post("filename");
 		
-		rename($filename, 'photo/profile/'.$userid.'.png');
+		$existpath = "";
+		foreach (glob("photo/profile/".$userid."_*.png") as $file) {
+		    $existpath = $file;
+		}
+		
+		$number = 0;
+		if($existpath!=""){
+			$arr = explode("_",$existpath);
+			$current_number = (int)str_replace(".png","",$arr[1]);
+			$number = $current_number + 1;
+			unlink($existpath);
+		}
+		
+		$final_file = $userid."_".$number;
+		
+		rename($filename, 'photo/profile/'.$final_file.'.png');
+		
 	}
 	
 	

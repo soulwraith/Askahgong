@@ -241,6 +241,7 @@
 			$item->builtup=str_replace(",","",$item->builtup);
 			$item->land_area=$CI->input->post('land_area');
 			$item->land_area=str_replace(",","",$item->land_area);
+			$item->land_area_text="";
 			$item->land_area_width=$CI->input->post('land_area_width');
 			$item->land_area_width=str_replace(",","",$item->land_area_width);
 			$item->land_area_height=$CI->input->post('land_area_height');
@@ -364,20 +365,10 @@
 			$post .= " land_area(%1) " . $land_area;
 			$post .= "(%3)";
 			
-			if($CI->input->post('land_area_width')) $land_area_width=$CI->input->post('land_area_width');
-			else if (isset($_GET['land_area_width'])) $land_area_width=$_GET['land_area_width'];
-			else if(isset($item)) $land_area_width=$item->land_area_width;
-			else $land_area_width="";
-			
-			if($CI->input->post('land_area_height')) $land_area_height=$CI->input->post('land_area_height');
-			else if (isset($_GET['land_area_height'])) $land_area_height=$_GET['land_area_height'];
-			else if(isset($item)) $land_area_height=$item->land_area_height;
-			else $land_area_height="";
-			
-			$land_area_text = "";
-			if(!empty($land_area_width) && !empty($land_area_height)){
-				$land_area_text = $land_area_width." X ".$land_area_height;
-			}
+			if($CI->input->post('land_area_text')) $land_area_text=$CI->input->post('land_area_text');
+			else if (isset($_GET['land_area_text'])) $land_area_text=$_GET['land_area_text'];
+			else if(isset($item)) $land_area_text=$item->$land_area_text;
+			else $land_area_text="";
 			$post .= " land_area_text(%1) " . $land_area_text;
 			$post .= "(%3)";
 			
@@ -857,9 +848,14 @@
 	}
 
 	function get_user_profile_pic($userid,$no_imagepath="image/usernoimage.png"){
-		$path='photo/profile/'.$userid.'.png';
+		$path='thisisempty';
+		
+		foreach (glob("photo/profile/".$userid."_*.png") as $filename) {
+		    $path = $filename;
+		}
+		
 		if (file_exists($path)) {
-		    return $path."?lastmod=".date('Format String');
+		    return $path;
 		} else {
 		    return $no_imagepath;
 		}

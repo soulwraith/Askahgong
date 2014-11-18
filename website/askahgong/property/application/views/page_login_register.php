@@ -335,7 +335,7 @@
 			<span class="text1">Please send</span><br> 
 			<span class="text2">"resetpw" </span><br> 
 			<span class="text1">to </span><br> 
-			<span class="text2">+601116181899 </span><br> 
+			<span class="text2">+60178761590 </span><br> 
 			<span class="text1">using your phone number.</span><br> 
 			
 			

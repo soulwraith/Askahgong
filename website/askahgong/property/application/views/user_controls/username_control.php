@@ -11,7 +11,7 @@
 	<?php if($possesive):?>
 		<?php $showing_username .= "'s"?>
 	<?php endif?>
-	<div user-panel-id="<?=$showing_userid?>" class="inline position-relative">
+	<div user-panel-id="<?=$showing_userid?>" class="inline position-relative no-tooltip">
 		<?php if($showing_pic):?>
 		<img class="img-smallest" src="<?=get_user_profile_pic($showing_userid)?>" style="margin-top:-5px">
 		<?php endif?>

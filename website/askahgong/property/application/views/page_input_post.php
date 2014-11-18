@@ -117,7 +117,10 @@
 				   </div>
 				   	
 				   	<div class="form-group">
-				      <label for="input_area">Area</label> <div class="icons question-hover" data-toggle="tooltip" title="You can specify further with road name, e.g. Jalan Biru" data-placement="right"></div>
+				      <label for="input_area">Location</label> 
+				      <div class="icons question-hover" data-toggle="tooltip" title="You can specify further with road name, e.g. Jalan Biru" data-placement="right"></div>
+				      <a class="dummy-suggest underline small-font pointer-cursor hidden-object">Suggest This Location To Us</a>
+				    	
 				    
 				      <input class="form-control" id="input_area" type="text">
 				      <input type="text" style="display:none" name="coordinates" id="coordinates" value="">
@@ -146,20 +149,12 @@
 					   		</div>
 					   		<div class="col-xs-6">
 					   			<div class="sub-label">&#x25cf; Land area (Sqft.)</div>
-					   			<div class="row">
-					   				<div class="col-xs-5 no-paddingright">
-					   					<input onchange="land_area_changed()" type="text" name="land_area_width" autocomplete="off" class="number-only form-control watermark main-control" mark="" value="<?php if(isset($item->land_area_width)) echo $item->land_area_width;?>">
-					   				</div>
-					   				<div class="col-xs-2 text-center" style="padding-top:10px;">
-					   					X
-					   				</div>
-					   				<div class="col-xs-5 no-paddingleft">
-					   					<input onchange="land_area_changed()" type="text" name="land_area_height" autocomplete="off" class="number-only form-control watermark main-control" mark="" value="<?php if(isset($item->land_area_height)) echo $item->land_area_height;?>">
-					   				</div>
-					   				
+					   		
+					   				<input type="text" onkeydown="return numericOnlyEvent(event,'multiply');" onchange="land_area_changed()" name="land_area_text" autocomplete="off" class="form-control watermark main-control" mark="" value="<?php if(isset($item)) echo $item->land_area_text;?>">
+					   							
 					   				<input type="hidden" name="land_area" autocomplete="off" class="number-only sell form-control" alternative="builtup" value="<?php if(isset($item)) echo $item->land_area;?>">
 					   				
-					   			</div>
+					   			
 					   			
 					   		</div>
 					   	</div>	   
@@ -171,7 +166,7 @@
 						<div class="col-xs-6">
 							<div class="form-group">
 						      <label for="bedroom"><span class="hidden-in-sell">Requested </span>Bedroom</label> 
-						      <input onkeydown="return numericOnlyEvent(event);" type="text" id="bedroom" name="bedroom" autocomplete="off" class="form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
+						      <input onkeydown="return numericOnlyEvent(event,'plus');" type="text" id="bedroom" name="bedroom" autocomplete="off" class="form-control watermark main-control" mark="Total bedrooms" value="<?php if(isset($item)) echo $item->bedroom;?>">
 						    </div>
 						</div>
 						<div class="col-xs-6">

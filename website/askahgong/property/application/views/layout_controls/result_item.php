@@ -74,11 +74,17 @@
 					</div>
 				</div>	
 			<?php else:?>
-				<div class="manage-controls" style="width:70px;">
+				<div class="manage-controls" style="width:135px;">
 					
 					<div class="icons <?php if($item->isshortlist) echo "shortlisted"; else echo "not-shortlisted"?>" onclick="handle_shortlist(this,<?=$item->id?>)">
 						
 					</div>
+					
+					<div class="icons chat" title="Chat with post owner" data-toggle="tooltip" onclick="open_circle(true,<?=$item->userid?>,'<?=$item->username?>','open',event)">
+						
+					</div>
+					
+					
 	     	  	</div>	
 				
 			
@@ -166,11 +172,11 @@
 					
 					<div class="col-xs-12 col-sm-12">
 						<div class="details overflow-ellipsis" style="padding-top:1px;">
-							<strong>&#x25cf;<?php if($item->type==1) echo "Req. "?>
+							<strong>&#x25cf;<?php if($item->type==1) echo " Req. "?>
 								<?php if($item->builtup!="" || ($item->builtup=="" && $item->land_area=="")):?>
 								Built-up:
 								<?php else:?>
-								Land area:
+								Land Area:
 								<?php endif?>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 							</strong>

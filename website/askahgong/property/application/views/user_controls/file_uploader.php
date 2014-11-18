@@ -18,7 +18,7 @@ JQUERY_CALLBACK.push(function(){
 		filters : [
 			{title : "Image files", extensions : "jpg,gif,png,jpeg"}
 		],
-		resize : {width : 1200, height : 1000, quality : 90}
+		resize : {width : 800, height : 600, quality : 50}
 	});
 
 

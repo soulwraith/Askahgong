@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="header">
-				<div class="col-xs-7 overflow-ellipsis" style="padding-left:0px;">
+				<div class="col-xs-9 overflow-ellipsis" style="padding-left:0px;padding-right:0px;">
 					<span class="username">
 						<div class="vertical-bottom icons inline-block user-status big user-state <?php if($user->isonline) echo "online"; else echo "offline";?>" userid="<?=$user->id?>" style="margin-right:0px">
 						</div>
@@ -12,7 +12,7 @@
 						<?php endif?>
 					</span>
 				</div>
-				<div class="col-xs-5" style="padding:0px;">
+				<div class="col-xs-3" style="padding:0px;">
 						<div class="contact-control <?php if($user->isfriend) echo "delete-contact"; else echo "add-contact"?> icons right" onclick="handle_contact(this,<?=$user->id?>,false,event,true,false);"></div>
 						<div class="message-contact icons right" data-toggle="tooltip" title="Message This User" data-placement="auto" onclick="open_circle(true,<?=$user->id?>,'<?=$user->username?>','open',event)">
 							

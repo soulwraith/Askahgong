@@ -21,7 +21,8 @@
 		if (isset($item->builtup) || $item->builtup==0 ) $return_item->builtuptoshow=$item->builtup." sqft.";	
 		if (isset($item->land_area) || $item->land_area==0 ) $return_item->land_area=str_replace(",","",$item->land_area);	
 		if (isset($item->land_area) || $item->land_area==0) $return_item->land_areatoshow=$item->land_area." sqft.";	
-		if (isset($item->land_area_text)) $return_item->land_area_texttoshow=$item->land_area_text." sqft.";	
+		if (isset($item->land_area_text)) $return_item->land_area_texttoshow=$item->land_area_text." sqft.";
+		if (isset($item->land_area_text)) $return_item->land_area_text=$item->land_area_text;		
 		if (isset($item->description)) $return_item->description=$item->description;	
 		if (isset($item->posttime)) $return_item->posttime=$item->posttime;	
 		if (isset($item->phone)) $return_item->phone=$item->phone;	
@@ -182,7 +183,7 @@
 		$return_item->sizetoshow = $return_item->builtuptoshow;
 	}
 	else{
-		$return_item->sizetoshow = $return_item->land_areatoshow;
+		$return_item->sizetoshow = $return_item->land_area_texttoshow;
 	}
 	
 	
@@ -206,8 +207,8 @@
 		
 	if (isset($item->description)){
 		$return_item->descriptiontoshow=$return_item->description;
-		$return_item->description_original=str_replace('<br />',"\n",$item->description);
-		$return_item->description_original_edit=str_replace('<br />',"\n",$item->description);
+		$return_item->description_original=str_replace('<br />',"",$item->description);
+		$return_item->description_original_edit=str_replace('<br />',"",$item->description);
 		if(($return_item->description)==""){
 			$return_item->descriptiontoshow="User didn't leave any message.";
 			$return_item->description_original="User didn't leave any message.";
@@ -223,11 +224,7 @@
 	}
 		
 		
-	if(isset($item->land_area_text) && !empty($item->land_area_text)){
-		$temp = explode("X",$item->land_area_text);
-		$return_item->land_area_width = trim($temp[0]);
-		$return_item->land_area_height = trim($temp[1]);
-	}
+	
 
     $return_item->areaidlevelstring="";
 	$return_item->areanametoshow="";

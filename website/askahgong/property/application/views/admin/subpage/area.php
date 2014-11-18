@@ -465,14 +465,14 @@ input.status{
     								current = event;
 							        var lat,lnt;
 							        lat=current.latLng.k;
-							        lnt=current.latLng.A;
+							        lnt=current.latLng.B;
 							        delay(lat,lnt);
     							},
     							clickCallBack:function(map, event){
     								current = event;
 							        var lat,lnt;
 							        lat=current.latLng.k;
-							        lnt=current.latLng.A;
+							        lnt=current.latLng.B;
 					     		 	check_area(lat,lnt);
     							}
 							});

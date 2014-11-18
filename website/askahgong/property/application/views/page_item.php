@@ -195,9 +195,18 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="col-lg-6 img-container image-carousel col-xs-12">
+						
+						<?php if($item->hasFile):?>
+							<a class="photo-anchor" href="<?=$item->firstFile?>" target="_blank">
+								<img class="photo img-responsive" src="<?=$item->firstFile?>">
+							</a>
+						<?php else:?>
 					
-					
-						<img class="photo img-responsive <?php if(!$item->hasFile) echo "default"?>" src="<?=$item->firstFile?>">
+							<img class="photo img-responsive default" src="<?=$item->firstFile?>">
+							
+						<?php endif?>
+						
+						
 						
 						<?php if(count($item->filearr)>0):?>
 									
@@ -289,7 +298,7 @@
 						<div class="main-details">
 
 							<div class="details-title col-lg-4 col-md-5 col-sm-4 col-xs-12">
-								<?php if($item->type==1) echo "Req."?> Land area
+								<?php if($item->type==1) echo "Req."?> Land Area
 
 							</div>
 							<div class="details-content col-lg-8 col-md-7 col-sm-8 col-xs-12">
